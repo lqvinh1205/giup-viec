@@ -1,0 +1,34 @@
+---
+import TextPage from '../layouts/TextPage.astro';
+import { site } from '../config/site';
+const years = new Date().getFullYear() - site.foundingYear;
+---
+<TextPage
+  title={`Giới thiệu ${site.name} – Trung tâm giúp việc tại Hà Nội`}
+  h1={`Về ${site.name}`}
+  description={`${site.name} kết nối người giúp việc tận tâm với các gia đình từ năm ${site.foundingYear}. Trung tâm đặt tại Hà Nội, phục vụ khách hàng trên toàn quốc.`}
+  lead={`Hơn ${years} năm kết nối người giúp việc và gia đình, bắt đầu từ một văn phòng nhỏ ở Hà Nội.`}
+>
+  <!-- TODO: thay bằng câu chuyện thật, ảnh văn phòng, ảnh đội ngũ -->
+  <h2>Chúng tôi bắt đầu từ một câu hỏi đơn giản</h2>
+  <p>“Mình có dám để người này ở nhà mình không?” Đó là câu hỏi đội ngũ của chúng tôi đặt ra với từng hồ sơ trước khi giới thiệu cho gia đình nào.</p>
+
+  <h2>Cách chúng tôi làm việc</h2>
+  <ul>
+    <li><strong>Gặp trực tiếp</strong> từng người lao động, kiểm tra căn cước công dân và xác nhận địa phương.</li>
+    <li><strong>Gọi hỏi gia đình cũ</strong> về tính cách và cách làm việc.</li>
+    <li><strong>Công khai giá</strong> ngay trên website, không có khoản phí ẩn.</li>
+    <li><strong>Đối xử công bằng với người lao động</strong>: không thu phí người giúp việc, hợp đồng ghi rõ quyền lợi.</li>
+  </ul>
+
+  <h2>Trung tâm ở Hà Nội, khách hàng ở khắp nơi</h2>
+  <p>Người giúp việc của chúng tôi đến từ nhiều tỉnh như Thanh Hóa, Nam Định, Thái Bình, Nghệ An, Phú Thọ… và đã làm cho gia đình ở Hà Nội cũng như các tỉnh thành khác. Nếu ở xa, anh chị có thể phỏng vấn qua video.</p>
+
+  <h2>Thông tin pháp lý</h2>
+  <p>
+    {site.name}<br />
+    Địa chỉ: {site.address.street}, {site.address.ward}, {site.address.district}, {site.address.city}<br />
+    {/* TODO: mã số doanh nghiệp, ngày cấp */}
+    Hotline: {site.hotlineDisplay} · Email: {site.email}
+  </p>
+</TextPage>

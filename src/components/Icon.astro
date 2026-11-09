@@ -1,0 +1,45 @@
+---
+// Bộ icon nét riêng của site: stroke tròn, hơi lệch tay, đồng bộ 1.75px.
+interface Props { name: string; size?: number; class?: string }
+const { name, size = 24, class: cls } = Astro.props;
+
+const paths: Record<string, string> = {
+  phone: '<path d="M5.5 3.5h3l1.6 4.2-2 1.4a11 11 0 0 0 6.8 6.8l1.4-2 4.2 1.6v3a2 2 0 0 1-2.2 2C10.6 19.8 4.2 13.4 3.5 5.7a2 2 0 0 1 2-2.2Z"/>',
+  zalo: '<path d="M12 3.5c5 0 9 3.4 9 7.6s-4 7.6-9 7.6c-1 0-2-.1-2.9-.4L4.5 20l1-3.6C4 15 3 13.1 3 11.1 3 6.9 7 3.5 12 3.5Z"/><path d="M8 9h3.2L8 13.3h3.3M13.3 9v4.3M15.5 11.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 1 0-3.2 0"/>',
+  messenger: '<path d="M12 3.2c-5 0-8.8 3.6-8.8 8.3 0 2.5 1.1 4.6 2.9 6.1V21l3-1.7c.9.3 1.9.4 2.9.4 5 0 8.8-3.6 8.8-8.3S17 3.2 12 3.2Z"/><path d="m7.5 13.6 3-3.3 2.2 2 3.8-2.4-3 3.3-2.2-2Z"/>',
+  facebook: '<path d="M14.5 21v-7.6h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4a20 20 0 0 0-2.4-.1c-2.4 0-4 1.4-4 4.1v2.1H8.6v3h2.6V21"/>',
+  home: '<path d="M3.5 11 12 4l8.5 7"/><path d="M5.8 9.3V20h12.4V9.3"/><path d="M10 20v-5.2h4V20"/>',
+  clock: '<circle cx="12" cy="12.4" r="8.4"/><path d="M12 7.6v5l3.2 2"/>',
+  baby: '<circle cx="12" cy="8" r="4.2"/><path d="M10.4 7.6h.01M13.6 7.6h.01M10.8 9.6c.7.5 1.7.5 2.4 0"/><path d="M6 20.5c.6-3.7 3-6 6-6s5.4 2.3 6 6"/>',
+  elder: '<circle cx="11" cy="5.6" r="2.4"/><path d="M11 8.6 9.5 14l2.6 2.4.9 4.4M9.5 14l-2.2 6.8M10.4 10.4l3.6 1.6"/><path d="M15.6 11.4 17.8 21"/>',
+  care: '<path d="M12 20s-7.5-4.4-7.5-10.1A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.5C19.5 15.6 12 20 12 20Z"/><path d="M12 10.5v5M9.5 13h5"/>',
+  broom: '<path d="m14.5 3.5-4 9"/><path d="M7.5 12.2 13.6 15l-1.3 5.6c-2.6-.3-5.5-1.6-7.6-3.6Z"/><path d="m8.6 17.4 1-2.2"/>',
+  building: '<path d="M5 20.5V5.2L13 3.5v17M13 9h6v11.5M3.5 20.5h17"/><path d="M8 8h2M8 11.5h2M8 15h2M16 12.5h.5M16 16h.5"/>',
+  lantern: '<path d="M12 2.8v2.4M9 5.2h6M7.4 8c0-1.6 2-2.8 4.6-2.8s4.6 1.2 4.6 2.8v6.6c0 1.6-2 2.8-4.6 2.8s-4.6-1.2-4.6-2.8Z"/><path d="M12 5.4v12M9 17.2h6M12 17.4v3.8"/>',
+  check: '<path d="m4.5 12.6 4.6 4.4L19.5 6.8"/>',
+  shield: '<path d="M12 3.2 19.2 6v5.4c0 4.6-3 8-7.2 9.4-4.2-1.4-7.2-4.8-7.2-9.4V6Z"/><path d="m8.8 12 2.3 2.3 4.4-4.6"/>',
+  swap: '<path d="M4.5 8.5h14l-3.4-3.4M19.5 15.5h-14l3.4 3.4"/>',
+  doc: '<path d="M6.5 3.5h7.7l4.3 4.3v12.7h-12Z"/><path d="M14 3.6v4.3h4.4M9.3 12.4h5.4M9.3 16h5.4"/>',
+  star: '<path d="m12 3.6 2.5 5.3 5.7.7-4.2 4 1.1 5.7L12 16.5l-5.1 2.8 1.1-5.7-4.2-4 5.7-.7Z"/>',
+  arrow: '<path d="M4.5 12h14.6M13.6 6.4 19.2 12l-5.6 5.6"/>',
+  pin: '<path d="M12 21s-6.8-6.1-6.8-11.3a6.8 6.8 0 0 1 13.6 0C18.8 14.9 12 21 12 21Z"/><circle cx="12" cy="9.8" r="2.4"/>',
+  mail: '<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6.2L20 7"/>',
+  menu: '<path d="M4 7h16M4 12.2h11M4 17.4h16"/>',
+  close: '<path d="m6 6 12 12M18 6 6 18"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+};
+---
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width={size}
+  height={size}
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  class={cls}
+  set:html={paths[name] ?? ''}
+/>

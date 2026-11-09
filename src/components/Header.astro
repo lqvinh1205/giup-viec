@@ -1,0 +1,94 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { nav, site, telHref, zaloHref } from '../config/site';
+
+interface Props { minimal?: boolean }
+const { minimal = false } = Astro.props;
+const current = Astro.url.pathname;
+---
+{!minimal && (
+  <div class="hidden bg-primary text-sm text-white/85 lg:block">
+    <div class="wrap flex h-9 items-center justify-between">
+      <p class="flex items-center gap-2"><Icon name="pin" size={16} class="text-accent-light" /> Trung tâm tại {site.address.city} · Kết nối người giúp việc toàn quốc</p>
+      <p class="flex items-center gap-5">
+        <span class="flex items-center gap-1.5"><Icon name="clock" size={16} class="text-accent-light" /> {site.hours.label}</span>
+        <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="topbar" class="flex items-center gap-1.5 text-white no-underline hover:text-accent-light"><Icon name="zalo" size={16} /> Zalo {site.hotlineDisplay}</a>
+      </p>
+    </div>
+  </div>
+)}
+
+<header class="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur-sm">
+  <div class="wrap flex h-16 items-center justify-between gap-4 lg:h-[4.5rem]">
+    <Logo />
+
+    {!minimal && (
+      <nav aria-label="Menu chính" class="hidden lg:block">
+        <ul class="flex items-center gap-7 text-[0.95rem] font-semibold">
+          {nav.map((n) => (
+            <li>
+              <a
+                href={n.href}
+                aria-current={current.startsWith(n.href) ? 'page' : undefined}
+                class="border-b-2 border-transparent py-2 text-ink no-underline hover:text-primary-soft aria-[current=page]:border-primary-soft aria-[current=page]:text-primary-soft"
+              >{n.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <div class="flex items-center gap-2">
+      <a href={telHref} data-track="call" data-position="header" class="btn btn-accent hidden !min-h-11 !px-4 text-sm sm:inline-flex">
+        <Icon name="phone" size={18} /> {site.hotlineDisplay}
+      </a>
+      {!minimal && (
+        <button
+          type="button"
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          class="grid size-11 place-items-center rounded-xl text-primary hover:bg-paper-deep lg:hidden"
+        >
+          <span class="sr-only">Mở menu</span>
+          <Icon name="menu" size={26} class="icon-open" />
+          <Icon name="close" size={26} class="icon-close hidden" />
+        </button>
+      )}
+    </div>
+  </div>
+</header>
+
+{/* Đặt ngoài <header>: backdrop-blur của header khiến phần tử fixed bên trong bị giới hạn trong header */}
+{!minimal && (
+  <nav id="mobile-menu" aria-label="Menu di động" hidden class="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto bg-white lg:hidden">
+    <ul class="wrap flex flex-col py-4">
+      {nav.map((n) => (
+        <li class="border-b border-line">
+          <a href={n.href} class="flex items-center justify-between py-4 text-xl font-semibold text-primary no-underline">
+            {n.label} <Icon name="arrow" size={22} class="text-primary-soft" />
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="wrap pb-28 text-ink-soft">Giờ làm việc: {site.hours.label}</p>
+  </nav>
+)}
+
+<script>
+  const btn = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    const setOpen = (open: boolean) => {
+      btn.setAttribute('aria-expanded', String(open));
+      menu.hidden = !open;
+      btn.querySelector('.icon-open')?.classList.toggle('hidden', open);
+      btn.querySelector('.icon-close')?.classList.toggle('hidden', !open);
+      document.documentElement.style.overflow = open ? 'hidden' : '';
+    };
+    btn.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+    menu.addEventListener('click', (e) => { if ((e.target as Element).closest('a')) setOpen(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+  }
+</script>

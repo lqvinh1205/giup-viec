@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PostList from '../../components/PostList.astro';
+import CTASection from '../../components/CTASection.astro';
+import { breadcrumb } from '../../lib/schema';
+import { getPosts, PAGE_SIZE } from '../../lib/blog';
+
+const all = await getPosts();
+const crumbs = [{ name: 'Cẩm nang', href: '/cam-nang/' }];
+---
+<BaseLayout
+  title="Cẩm nang thuê người giúp việc – Kinh nghiệm, giá, hợp đồng"
+  description="Kinh nghiệm thuê người giúp việc gia đình: bảng giá, câu hỏi phỏng vấn, mẫu hợp đồng, cách chăm bé và chăm người già an toàn."
+  jsonLd={[breadcrumb(crumbs)]}
+>
+  <PageHeader title="Cẩm nang thuê giúp việc" lead="Kinh nghiệm thực tế từ hàng nghìn lần kết nối gia đình và người giúp việc." crumbs={crumbs} />
+  <section class="wrap py-14">
+    <PostList posts={all.slice(0, PAGE_SIZE)} page={1} lastPage={Math.ceil(all.length / PAGE_SIZE)} />
+  </section>
+  <CTASection position="blog-index" />
+</BaseLayout>

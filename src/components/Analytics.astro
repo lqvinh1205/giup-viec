@@ -1,0 +1,38 @@
+---
+import { site } from '../config/site';
+const gtmId = site.analytics.gtmId;
+---
+<script is:inline define:vars={{ gtmId }}>
+  window.dataLayer = window.dataLayer || [];
+
+  // Đo chuyển đổi: mọi phần tử có data-track (call | zalo | messenger)
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest && e.target.closest('[data-track]');
+    if (!el) return;
+    window.dataLayer.push({
+      event: 'contact_click',
+      method: el.dataset.track,
+      position: el.dataset.position || '',
+      page_path: location.pathname,
+      utm_campaign: new URLSearchParams(location.search).get('utm_campaign') || '',
+    });
+  });
+
+  // Nạp GTM trễ (sau tương tác đầu tiên hoặc 3.5s) để không ảnh hưởng tốc độ tải
+  if (gtmId) {
+    var loaded = false;
+    var load = function () {
+      if (loaded) return;
+      loaded = true;
+      window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmId;
+      document.head.appendChild(s);
+    };
+    ['pointerdown', 'scroll', 'keydown'].forEach(function (ev) {
+      addEventListener(ev, load, { once: true, passive: true });
+    });
+    setTimeout(load, 3500);
+  }
+</script>

@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+import { site, telHref, zaloHref } from '../config/site';
+import { breadcrumb } from '../lib/schema';
+
+const crumbs = [{ name: 'Liên hệ', href: '/lien-he/' }];
+const a = site.address;
+const channels = [
+  { icon: 'phone', label: 'Hotline', value: site.hotlineDisplay, href: telHref, track: 'call', cls: 'bg-cta text-white' },
+  { icon: 'zalo', label: 'Zalo', value: site.zalo, href: zaloHref, track: 'zalo', cls: 'bg-[#0068ff] text-white' },
+  { icon: 'messenger', label: 'Messenger', value: 'Nhắn tin fanpage', href: site.messenger, track: 'messenger', cls: 'bg-primary text-paper' },
+];
+---
+<BaseLayout
+  title={`Liên hệ ${site.name} – Hotline ${site.hotlineDisplay}`}
+  description={`Liên hệ thuê người giúp việc: hotline ${site.hotlineDisplay}, Zalo, Messenger. Văn phòng tại ${a.district}, ${a.city}. ${site.hours.label}.`}
+  jsonLd={[breadcrumb(crumbs)]}
+>
+  <PageHeader title="Liên hệ" lead={`Gọi hoặc nhắn tin, chúng tôi phản hồi trong ${site.responseTime} (${site.hours.label}).`} crumbs={crumbs} />
+
+  <section class="wrap py-14">
+    <ul class="grid gap-4 sm:grid-cols-3">
+      {channels.map((c) => (
+        <li>
+          <a href={c.href} target={c.track === 'call' ? undefined : '_blank'} rel="noopener" data-track={c.track} data-position="contact-page"
+             class:list={['flex items-center gap-4 p-6 no-underline transition hover:opacity-90', c.cls]} style="border-radius: var(--radius-blob)">
+            <Icon name={c.icon} size={34} />
+            <span><span class="block text-sm opacity-80">{c.label}</span><span class="font-display text-xl">{c.value}</span></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-12 grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+      <address class="space-y-4 not-italic">
+        <h2 class="text-2xl">Văn phòng</h2>
+        <p class="flex gap-3"><Icon name="pin" size={22} class="mt-1 shrink-0 text-primary-soft" />{a.street}, {a.ward}, {a.district}, {a.city}</p>
+        <p class="flex gap-3"><Icon name="clock" size={22} class="mt-1 shrink-0 text-primary-soft" />{site.hours.label}</p>
+        <p class="flex gap-3"><Icon name="mail" size={22} class="mt-1 shrink-0 text-primary-soft" /><a href={`mailto:${site.email}`} class="text-primary">{site.email}</a></p>
+        <p class="flex gap-3"><Icon name="facebook" size={22} class="mt-1 shrink-0 text-primary-soft" /><a href={site.fanpage} target="_blank" rel="noopener" class="text-primary">Fanpage Facebook</a></p>
+      </address>
+      <div class="aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-line bg-paper-deep">
+        {site.mapEmbed ? (
+          <iframe src={site.mapEmbed} title={`Bản đồ đường đến ${site.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="size-full border-0"></iframe>
+        ) : (
+          <a href={`https://www.google.com/maps/search/?api=1&query=${site.geo.lat},${site.geo.lng}`} target="_blank" rel="noopener"
+             class="grid size-full place-items-center text-center font-semibold text-primary">
+            <span><Icon name="pin" size={40} class="mx-auto text-primary-soft" />Mở Google Maps</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

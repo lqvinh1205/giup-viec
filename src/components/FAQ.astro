@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+interface Props { faqs: { q: string; a: string }[] }
+const { faqs } = Astro.props;
+---
+<div class="divide-y divide-line border-y border-line">
+  {faqs.map((f) => (
+    <details class="group py-1">
+      <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold text-primary [&::-webkit-details-marker]:hidden">
+        <span>{f.q}</span>
+        <Icon name="plus" size={22} class="shrink-0 text-primary-soft transition group-open:rotate-45" />
+      </summary>
+      <p class="pb-5 text-ink-soft">{f.a}</p>
+    </details>
+  ))}
+</div>

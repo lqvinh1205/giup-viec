@@ -1,0 +1,29 @@
+---
+import TextPage from '../layouts/TextPage.astro';
+import { site } from '../config/site';
+---
+<TextPage
+  title="Chính sách bảo mật thông tin"
+  h1="Chính sách bảo mật"
+  description={`Chính sách bảo mật thông tin khách hàng và người lao động của ${site.name}.`}
+  cta={false}
+>
+  <h2>Thông tin chúng tôi thu thập</h2>
+  <p>Khi anh chị gọi điện hoặc nhắn tin qua Zalo, Messenger, chúng tôi có thể ghi nhận họ tên, số điện thoại, địa chỉ và nhu cầu dịch vụ để tư vấn và giới thiệu người giúp việc.</p>
+
+  <h2>Mục đích sử dụng</h2>
+  <ul>
+    <li>Tư vấn, giới thiệu người giúp việc phù hợp</li>
+    <li>Lập hợp đồng và chăm sóc khách hàng sau dịch vụ</li>
+    <li>Cải thiện chất lượng dịch vụ và website</li>
+  </ul>
+
+  <h2>Cookie và công cụ đo lường</h2>
+  <p>Website sử dụng Google Analytics, Google Ads và Meta Pixel để đo lượt truy cập và hiệu quả quảng cáo. Các công cụ này dùng cookie và không thu thập thông tin định danh cá nhân như tên hay số điện thoại. Anh chị có thể tắt cookie trong cài đặt trình duyệt.</p>
+
+  <h2>Chia sẻ thông tin</h2>
+  <p>Chúng tôi không bán hay chia sẻ thông tin cá nhân cho bên thứ ba, trừ người giúp việc được giới thiệu (trong phạm vi cần thiết để làm việc) hoặc khi cơ quan nhà nước có thẩm quyền yêu cầu.</p>
+
+  <h2>Liên hệ</h2>
+  <p>Mọi yêu cầu về dữ liệu cá nhân xin gửi về {site.email} hoặc gọi {site.hotlineDisplay}.</p>
+</TextPage>

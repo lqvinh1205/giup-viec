@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Icon from './Icon.astro';
+interface Props { name: string; place: string; service: string; rating: number; text: string; avatar?: string; index?: number }
+const { name, place, rating, text, avatar, index = 0 } = Astro.props;
+
+// Ảnh đại diện nằm trong src/assets/reviews/; tên file khai báo ở reviews.json
+const avatars = import.meta.glob<{ default: ImageMetadata }>('../assets/reviews/*.{jpg,jpeg,png,webp}', { eager: true });
+const photo = avatar ? avatars[`../assets/reviews/${avatar}`]?.default : undefined;
+if (avatar && !photo) throw new Error(`reviews.json: không tìm thấy ảnh src/assets/reviews/${avatar}`);
+const initial = name.trim().split(/\s+/).pop()!.charAt(0).toUpperCase();
+const tint = ['bg-primary', 'bg-primary-soft', 'bg-accent-deep', 'bg-sky-700'][index % 4];
+---
+<figure class="flex h-full flex-col rounded-2xl border border-line bg-white p-6 shadow-[0_10px_30px_-18px_rgba(30,58,138,.35)] transition hover:-translate-y-1">
+  <div class="flex gap-0.5 text-accent" aria-label={`${rating} trên 5 sao`}>
+    {Array.from({ length: 5 }, (_, i) => <Icon name="star" size={18} class={i < rating ? 'fill-current' : 'opacity-30'} />)}
+  </div>
+  <blockquote class="mt-3 flex-1 text-[0.98rem] leading-relaxed">“{text}”</blockquote>
+  <figcaption class="mt-5 flex items-center gap-3 border-t border-line pt-4">
+    {photo ? (
+      <Image src={photo} alt={`Ảnh ${name}`} width={56} height={56} densities={[1, 2]} class="size-14 shrink-0 rounded-full object-cover ring-2 ring-paper-deep" />
+    ) : (
+      <span class:list={['grid size-14 shrink-0 place-items-center rounded-full text-xl font-bold text-white', tint]} aria-hidden="true">{initial}</span>
+    )}
+    <span class="text-sm leading-snug"><strong class="block text-base text-primary">{name}</strong><span class="text-ink-soft">{place}</span></span>
+  </figcaption>
+</figure>

@@ -1,0 +1,14 @@
+---
+// Logo tạm thời — thay file src/assets/brand/logo-mark.svg khi có logo chính thức
+import LogoMark from '../assets/brand/logo-mark.svg';
+import { site } from '../config/site';
+interface Props { light?: boolean }
+const { light = false } = Astro.props;
+---
+<a href="/" class="flex items-center gap-2.5 no-underline" aria-label={`${site.name} – Trang chủ`}>
+  <LogoMark width={40} height={40} aria-hidden="true" class:list={['shrink-0', light && 'rounded-xl ring-2 ring-white/20']} />
+  <span class="flex flex-col leading-none">
+    <span class:list={['text-[1.3rem] font-bold tracking-tight', light ? 'text-white' : 'text-primary']}>{site.shortName}</span>
+    <span class:list={['mt-1 text-[0.68rem] font-semibold tracking-[0.14em] uppercase', light ? 'text-white/70' : 'text-ink-soft']}>Giúp việc gia đình</span>
+  </span>
+</a>

@@ -1,0 +1,10 @@
+[
+  { "id": "r1", "sample": true, "avatar": "chi-huong.jpg", "name": "Chị Hương", "place": "Cầu Giấy", "service": "cham-be", "rating": 5, "date": "2026-09-12",
+    "text": "Cô chăm bé nhà mình rất nhẹ nhàng, tối nào cũng nhắn Zalo kể bé ăn ngủ thế nào. Trung tâm gửi hồ sơ rõ ràng, có cả số của gia đình cũ để mình gọi hỏi." },
+  { "id": "r2", "sample": true, "avatar": "anh-tuan.jpg", "name": "Anh Tuấn", "place": "Long Biên", "service": "cham-nguoi-gia", "rating": 5, "date": "2026-08-30",
+    "text": "Bố mình khó tính, đổi một lần thì gặp được cô hợp tính. Trung tâm đổi nhanh, không mất thêm phí như đã cam kết." },
+  { "id": "r3", "sample": true, "avatar": "chi-lan.jpg", "name": "Chị Lan", "place": "Hải Phòng", "service": "giup-viec-o-lai-nha", "rating": 5, "date": "2026-07-18",
+    "text": "Nhà mình ở Hải Phòng nhưng vẫn được giới thiệu người, phỏng vấn qua video rồi cô xuống làm luôn. Nấu ăn hợp khẩu vị cả nhà." },
+  { "id": "r4", "sample": true, "avatar": "chi-mai.jpg", "name": "Chị Mai", "place": "Thanh Xuân", "service": "giup-viec-theo-gio", "rating": 4, "date": "2026-10-02",
+    "text": "Đặt dọn nhà 2 buổi/tuần, chị làm kỹ và đúng giờ. Có hôm chị nghỉ thì trung tâm báo trước và cử người thay." }
+]

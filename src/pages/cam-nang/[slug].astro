@@ -1,0 +1,61 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CTASection from '../../components/CTASection.astro';
+import Icon from '../../components/Icon.astro';
+import { article, breadcrumb, formatVnd } from '../../lib/schema';
+import { getPosts } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((p) => ({ params: { slug: p.id }, props: { entry: p } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content, headings } = await render(entry);
+const path = `/cam-nang/${entry.id}/`;
+const crumbs = [{ name: 'Cẩm nang', href: '/cam-nang/' }, { name: d.title, href: path }];
+const related = d.service ? await getEntry('services', d.service) : undefined;
+const more = (await getPosts()).filter((p) => p.id !== entry.id).slice(0, 3);
+const toc = headings.filter((h) => h.depth === 2);
+---
+<BaseLayout title={d.title} description={d.description} type="article" jsonLd={[breadcrumb(crumbs), article(d, path)]}>
+  <PageHeader title={d.title} crumbs={crumbs}>
+    <p class="mt-4 text-sm text-ink-soft">
+      Đăng ngày <time datetime={d.pubDate.toISOString()}>{d.pubDate.toLocaleDateString('vi-VN')}</time>
+      {d.updatedDate && <> · Cập nhật <time datetime={d.updatedDate.toISOString()}>{d.updatedDate.toLocaleDateString('vi-VN')}</time></>}
+    </p>
+  </PageHeader>
+
+  <div class="wrap grid gap-12 py-12 lg:grid-cols-[1fr_18rem]">
+    <article class="prose-vn">
+      {toc.length > 2 && (
+        <nav aria-label="Mục lục" class="mb-8 rounded-2xl border border-line bg-white/60 p-5">
+          <p class="font-display text-lg text-primary">Nội dung bài viết</p>
+          <ol class="mt-2 !mb-0">{toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+        </nav>
+      )}
+      <Content />
+    </article>
+
+    <aside class="space-y-8 lg:sticky lg:top-24 lg:self-start">
+      {related && (
+        <a href={`/dich-vu/${related.id}/`} class="block bg-primary p-6 text-paper no-underline" style="border-radius: var(--radius-blob)">
+          <Icon name={related.data.icon} size={30} class="text-accent-light" />
+          <p class="mt-3 font-display text-xl text-paper">{related.data.name}</p>
+          <p class="mt-1 text-paper/80">từ {formatVnd(related.data.priceFrom)}/{related.data.priceUnit}</p>
+          <span class="mt-4 inline-flex items-center gap-2 font-semibold">Xem dịch vụ <Icon name="arrow" size={18} /></span>
+        </a>
+      )}
+      {more.length > 0 && (
+        <div>
+          <p class="font-display text-lg text-primary">Đọc thêm</p>
+          <ul class="mt-3 space-y-3">{more.map((p) => <li><a href={`/cam-nang/${p.id}/`} class="font-semibold text-ink hover:text-primary-soft">{p.data.title}</a></li>)}</ul>
+        </div>
+      )}
+    </aside>
+  </div>
+
+  <CTASection position="blog-post" />
+</BaseLayout>

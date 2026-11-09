@@ -1,0 +1,226 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSlider from '../components/HeroSlider.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Steps from '../components/Steps.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import Icon from '../components/Icon.astro';
+import { Image } from 'astro:assets';
+import camKet from '../assets/photos/cam-ket.jpg';
+import { site, telHref, zaloHref } from '../config/site';
+import { faqPage, formatVnd } from '../lib/schema';
+import { getReviews } from '../lib/reviews';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()).slice(0, 3);
+const reviews = (await getReviews()).slice(0, 4);
+
+const rotating = ['cho gia đình bạn', 'chăm bé yêu', 'chăm sóc ông bà', 'chăm người bệnh'];
+// Số liệu hero: chỉ dùng những gì trung tâm cam kết thật (lấy từ src/config/site.ts)
+const stats = [
+  { n: new Date().getFullYear() - site.foundingYear, suffix: '+', label: 'năm kinh nghiệm' },
+  { n: services.length, suffix: '', label: 'dịch vụ gia đình' },
+  { n: parseInt(site.responseTime), suffix: ' phút', label: 'phản hồi tư vấn' },
+];
+
+const promises = [
+  { icon: 'shield', t: 'Hồ sơ xác minh', d: 'Kiểm tra CCCD, xác nhận địa phương và gọi hỏi gia đình cũ trước khi giới thiệu.' },
+  { icon: 'home', t: 'Làm thử trước khi nhận', d: 'Gặp mặt, làm thử tại nhà. Hài lòng mới ký hợp đồng.' },
+  { icon: 'swap', t: 'Đổi người miễn phí', d: 'Không hợp, chúng tôi đổi người trong thời gian bảo hành, không thu thêm phí.' },
+  { icon: 'doc', t: 'Hợp đồng ba bên', d: 'Lương, ngày nghỉ, phạm vi công việc ghi rõ bằng văn bản. Không có khoản phí ẩn.' },
+];
+
+const faqs = [
+  { q: 'Bao lâu thì có người?', a: 'Thường từ 1 đến 3 ngày sau khi chốt yêu cầu. Chăm bệnh tại viện có thể nhận trong ngày nếu còn người.' },
+  { q: 'Nhà tôi không ở Hà Nội thì có thuê được không?', a: 'Được. Trung tâm đặt tại Hà Nội nhưng người giúp việc đến từ nhiều tỉnh và đã đi làm cho gia đình ở nhiều nơi. Anh chị có thể phỏng vấn qua video trước khi người giúp việc đến.' },
+  { q: 'Phí dịch vụ tính thế nào?', a: 'Phí trung tâm tính một lần khi ký hợp đồng và báo trước. Lương trả trực tiếp cho người giúp việc theo mức đã thỏa thuận.' },
+  { q: 'Người giúp việc tự ý nghỉ thì sao?', a: 'Trong thời gian bảo hành, trung tâm tìm người thay miễn phí. Thời hạn bảo hành ghi trong hợp đồng.' },
+  { q: 'Tôi liên hệ bằng cách nào nhanh nhất?', a: `Gọi hotline ${site.hotlineDisplay} hoặc nhắn Zalo. Tư vấn viên phản hồi trong ${site.responseTime}, khung giờ ${site.hours.label}.` },
+];
+---
+<BaseLayout
+  title={`Trung tâm giúp việc nhà Hà Nội uy tín – ${site.shortName}`}
+  description={site.description}
+  jsonLd={[faqPage(faqs)]}
+>
+  <!-- HERO -->
+  <section class="wrap grid items-center gap-14 pt-8 pb-16 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:pt-16 lg:pb-24">
+    <div>
+      <p class="eyebrow">Trung tâm giúp việc · Hà Nội</p>
+      <h1 class="mt-4 text-[2.4rem] sm:text-5xl lg:text-[3.6rem]">
+        Người giúp việc tận tâm
+        <span class="hero-rotator mt-1 text-primary-soft" aria-hidden="true">
+          {rotating.map((t) => <span class="whitespace-nowrap">{t}</span>)}
+        </span>
+        <span class="sr-only">{rotating.join(', ')}</span>
+      </h1>
+      <p class="mt-5 max-w-xl text-lg text-ink-soft">
+        Giúp việc ở lại nhà, theo giờ, chăm bé, chăm ông bà và người bệnh. Hồ sơ xác minh, làm thử trước khi nhận, đổi người miễn phí.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href={telHref} data-track="call" data-position="hero" class="btn btn-accent text-lg"><Icon name="phone" size={22} /> Gọi {site.hotlineDisplay}</a>
+        <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="hero" class="btn btn-ghost text-lg"><Icon name="zalo" size={24} /> Nhắn Zalo tư vấn</a>
+      </div>
+      <dl class="mt-9 grid max-w-md grid-cols-3 gap-4 border-t border-line pt-6">
+        {stats.map((s) => (
+          <div>
+            <dt class="sr-only">{s.label}</dt>
+            <dd class="font-display text-3xl text-primary"><span data-count={s.n}>{s.n}</span>{s.suffix}</dd>
+            <dd class="text-sm leading-snug text-ink-soft">{s.label}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="mt-4 text-sm text-ink-soft">Giờ tư vấn: {site.hours.label}</p>
+    </div>
+    <HeroSlider slides={services.slice(0, 4).map((s) => ({ slug: s.id, ...s.data }))} />
+  </section>
+
+  <!-- DỊCH VỤ -->
+  <section class="wrap py-14" aria-labelledby="dv">
+    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+      <div>
+        <p class="eyebrow">Dịch vụ</p>
+        <h2 id="dv" class="mt-3 max-w-lg text-3xl sm:text-4xl">Chọn người phù hợp cho từng việc trong nhà</h2>
+      </div>
+      <a href="/dich-vu/" class="font-semibold text-primary">Xem tất cả dịch vụ →</a>
+    </div>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {services.map((s, i) => <ServiceCard slug={s.id} index={i} {...s.data} />)}
+      <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="service-grid"
+         class="flex flex-col justify-between bg-primary p-6 text-paper no-underline" style="border-radius: var(--radius-blob)">
+        <p class="font-display text-xl text-paper">Nhu cầu khác?</p>
+        <p class="mt-2 text-paper/80">Nấu ăn cho gia đình, chăm thú cưng, trông nhà khi đi xa… Nhắn cho chúng tôi.</p>
+        <span class="mt-5 inline-flex items-center gap-2 font-semibold"><Icon name="zalo" size={22} /> Hỏi qua Zalo</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- GIÁ -->
+  <section class="bg-paper-deep py-16" aria-labelledby="gia">
+    <div class="wrap grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
+      <div>
+        <p class="eyebrow">Giá tham khảo</p>
+        <h2 id="gia" class="mt-3 text-3xl sm:text-4xl">Khung giá để anh chị dự trù, chốt giá khi trao đổi trực tiếp</h2>
+        <p class="mt-4 text-ink-soft">Mức dưới đây <strong class="text-ink">chỉ mang tính tham khảo</strong>. Giá thực tế tùy số người trong nhà, diện tích, khối lượng công việc và yêu cầu riêng, được thỏa thuận trực tiếp với tư vấn viên trước khi gặp người.</p>
+        <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="home-price" class="btn btn-accent whitespace-nowrap"><Icon name="zalo" size={22} /> Nhắn Zalo báo giá</a>
+          <a href="/bang-gia/" class="inline-flex items-center gap-1.5 self-center font-semibold whitespace-nowrap text-primary-soft">Xem bảng giá chi tiết <Icon name="arrow" size={18} /></a>
+        </div>
+      </div>
+      <ul class="divide-y divide-dashed divide-line rounded-[1.5rem] bg-paper px-5 sm:px-8">
+        {services.map((s) => (
+          <li>
+            <a href={`/dich-vu/${s.id}/`} class="flex items-baseline justify-between gap-4 py-4 no-underline">
+              <span class="font-semibold text-ink">{s.data.name}</span>
+              <span class="shrink-0 text-ink-soft">từ <strong class="font-display text-lg text-accent-deep">{formatVnd(s.data.priceFrom)}</strong>/{s.data.priceUnit}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- QUY TRÌNH -->
+  <section class="wrap py-16 lg:py-20" aria-labelledby="qt">
+    <p class="eyebrow">Quy trình</p>
+    <h2 id="qt" class="mt-3 mb-12 max-w-xl text-3xl sm:text-4xl">Bốn bước, thường xong trong 1–3 ngày</h2>
+    <Steps />
+  </section>
+
+  <!-- CAM KẾT -->
+  <section class="bg-primary py-16 text-paper lg:py-20" aria-labelledby="ck">
+    <div class="wrap grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+      <div>
+        <p class="eyebrow !text-accent-light">Cam kết</p>
+        <h2 id="ck" class="mt-3 text-3xl !text-paper sm:text-4xl">Chúng tôi chỉ giới thiệu người mà mình dám để ở nhà mình</h2>
+        <Image src={camKet} alt="Người chăm sóc trò chuyện cùng người cao tuổi" widths={[480, 720]} sizes="(min-width:1024px) 400px, 92vw"
+          class="mt-8 aspect-[4/3] w-full rounded-2xl object-cover" />
+      </div>
+      <ul class="grid content-center gap-x-8 gap-y-10 sm:grid-cols-2">
+        {promises.map((p) => (
+          <li>
+            <Icon name={p.icon} size={30} class="text-accent-light" />
+            <h3 class="mt-3 text-xl !text-paper">{p.t}</h3>
+            <p class="mt-2 text-paper/80">{p.d}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ĐÁNH GIÁ -->
+  {reviews.length > 0 && (
+    <section class="wrap py-16 lg:py-20" aria-labelledby="dg">
+      <p class="eyebrow">Gia đình nói gì</p>
+      <h2 id="dg" class="mt-3 max-w-xl text-3xl sm:text-4xl">Những lời nhắn chúng tôi nhận được</h2>
+      <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {reviews.map((r, i) => <ReviewCard index={i} {...r} />)}
+      </div>
+    </section>
+  )}
+
+  <!-- TOÀN QUỐC -->
+  <section class="wrap" aria-labelledby="tq">
+    <div class="grid items-center gap-6 border-y border-line py-10 md:grid-cols-[auto_1fr_auto] md:gap-10">
+      <Icon name="pin" size={44} class="text-primary-soft" />
+      <div>
+        <h2 id="tq" class="text-2xl">Trung tâm ở Hà Nội, kết nối khắp nơi</h2>
+        <p class="mt-2 max-w-2xl text-ink-soft">Người giúp việc của chúng tôi đến từ nhiều tỉnh thành và nhận làm cho gia đình ở Hà Nội lẫn các tỉnh khác. Ở xa? Phỏng vấn qua video, chúng tôi lo phần còn lại.</p>
+      </div>
+      <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="nationwide" class="btn btn-ghost">Hỏi khu vực của bạn</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="wrap grid gap-10 py-16 lg:grid-cols-[1fr_1.6fr] lg:py-20" aria-labelledby="faq">
+    <div>
+      <p class="eyebrow">Hỏi đáp</p>
+      <h2 id="faq" class="mt-3 text-3xl sm:text-4xl">Câu hỏi thường gặp</h2>
+    </div>
+    <FAQ faqs={faqs} />
+  </section>
+
+  <!-- CẨM NANG -->
+  {posts.length > 0 && (
+    <section class="wrap pb-6" aria-labelledby="cn">
+      <div class="flex items-end justify-between gap-4">
+        <h2 id="cn" class="text-3xl">Cẩm nang thuê giúp việc</h2>
+        <a href="/cam-nang/" class="shrink-0 font-semibold text-primary">Tất cả →</a>
+      </div>
+      <ul class="mt-8 grid gap-6 md:grid-cols-3">
+        {posts.map((p) => (
+          <li class="border-t-2 border-primary pt-4">
+            <time datetime={p.data.pubDate.toISOString()} class="text-sm text-ink-soft">{p.data.pubDate.toLocaleDateString('vi-VN')}</time>
+            <h3 class="mt-1 text-xl"><a href={`/cam-nang/${p.id}/`} class="text-primary no-underline hover:text-primary-soft">{p.data.title}</a></h3>
+            <p class="mt-2 line-clamp-2 text-[0.95rem] text-ink-soft">{p.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <CTASection position="home-bottom" />
+</BaseLayout>
+
+<script>
+  // Số liệu hero đếm tăng khi hiện ra (không JS thì vẫn hiện số cuối)
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        io.unobserve(e.target);
+        const el = e.target as HTMLElement, end = +el.dataset.count!, t0 = performance.now();
+        const tick = (t: number) => {
+          const k = Math.min((t - t0) / 1200, 1);
+          el.textContent = String(Math.round(end * (1 - (1 - k) ** 3)));
+          if (k < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+    });
+    document.querySelectorAll('[data-count]').forEach((el) => io.observe(el));
+  }
+</script>

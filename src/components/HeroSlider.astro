@@ -1,0 +1,89 @@
+---
+// Banner trượt ở trang chủ: mỗi slide là một dịch vụ.
+// Ảnh: src/assets/services/<tên-file-dịch-vụ>.jpg (hoặc .png/.webp), dùng chung với thẻ dịch vụ
+// và đầu trang dịch vụ. Thiếu ảnh thì slide hiện hình minh họa.
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { formatVnd } from '../lib/schema';
+import { serviceImage } from '../lib/images';
+
+interface Slide { slug: string; name: string; summary: string; icon: string; priceFrom: number; priceUnit: string }
+interface Props { slides: Slide[] }
+const { slides } = Astro.props;
+
+const tints = ['#1e3a8a, #2563eb', '#1e40af, #0ea5e9', '#172554, #3b82f6', '#1e3a8a, #6366f1'];
+---
+<div class="relative mx-auto w-full max-w-md lg:max-w-none" data-slider>
+  <div class="relative aspect-[4/5] overflow-hidden rounded-3xl bg-primary shadow-xl">
+    <div class="flex size-full snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+         data-track aria-roledescription="carousel" aria-label="Dịch vụ nổi bật">
+      {slides.map((s, i) => {
+        const photo = serviceImage(s.slug);
+        return (
+          <a href={`/dich-vu/${s.slug}/`} class="hero-slide relative size-full shrink-0 snap-start overflow-hidden no-underline"
+             aria-roledescription="slide" aria-label={`${i + 1}/${slides.length}: ${s.name}`}>
+            {photo ? (
+              <Image src={photo} alt={s.name} widths={[400, 640, 900]} sizes="(min-width:1024px) 480px, 90vw"
+                loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'} class="hero-photo size-full object-cover" />
+            ) : (
+              <div class="size-full" style={`background: linear-gradient(150deg, ${tints[i % tints.length]})`} aria-hidden="true">
+                <span class="hero-bubble absolute top-[12%] right-[10%] size-24 rounded-full bg-accent/90"></span>
+                <span class="hero-bubble absolute top-[42%] left-[8%] size-14 rounded-full bg-white/15 [animation-delay:-3s]"></span>
+                <span class="absolute -bottom-16 -left-10 size-64 rounded-full bg-white/10"></span>
+                <Icon name={s.icon} size={180} class="absolute top-[30%] left-1/2 -translate-x-1/2 text-white/90" />
+              </div>
+            )}
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/35 to-transparent p-6 pt-20 text-white">
+              <p class="font-display text-2xl leading-tight">{s.name}</p>
+              <p class="mt-1 line-clamp-2 text-sm text-white/85">{s.summary}</p>
+              <p class="mt-2 text-sm"><strong class="text-accent-light">từ {formatVnd(s.priceFrom)}/{s.priceUnit}</strong> <span class="text-white/70">· giá tham khảo</span></p>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+    <div class="absolute top-5 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-black/30 px-3 py-2 backdrop-blur-sm" role="group" aria-label="Chọn slide">
+      {slides.map((s, i) => (
+        <button type="button" data-dot={i} aria-label={`Xem ${s.name}`} aria-current={i === 0 ? 'true' : undefined}
+          class="h-2 w-2 rounded-full bg-white/50 transition-all aria-[current=true]:w-6 aria-[current=true]:bg-white"></button>
+      ))}
+    </div>
+  </div>
+
+  <div class="absolute bottom-[34%] left-3 flex items-center gap-3 rounded-2xl bg-white p-3 pr-5 shadow-lg sm:-left-10">
+    <span class="grid size-10 place-items-center rounded-xl bg-paper-deep text-primary-soft"><Icon name="shield" size={22} /></span>
+    <span class="text-sm leading-tight"><strong class="block text-primary">Hồ sơ xác minh</strong><span class="text-ink-soft">Làm thử trước khi nhận</span></span>
+  </div>
+</div>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-bubble { animation: hero-float 7s ease-in-out infinite; }
+    .hero-photo { animation: hero-zoom 14s ease-in-out infinite alternate; }
+  }
+  @keyframes hero-float { 50% { transform: translateY(-10px); } }
+  @keyframes hero-zoom { to { transform: scale(1.08); } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-slider]').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('[data-track]')!;
+    const dots = [...root.querySelectorAll<HTMLButtonElement>('[data-dot]')];
+    const count = dots.length;
+    const current = () => Math.round(track.scrollLeft / track.clientWidth);
+    const go = (i: number) => track.scrollTo({ left: ((i + count) % count) * track.clientWidth, behavior: 'smooth' });
+
+    dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+    track.addEventListener('scroll', () => {
+      const i = current();
+      dots.forEach((d, j) => (j === i ? d.setAttribute('aria-current', 'true') : d.removeAttribute('aria-current')));
+    }, { passive: true });
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let paused = false;
+    for (const [ev, val] of [['pointerenter', true], ['pointerleave', false], ['focusin', true], ['focusout', false]] as const) {
+      root.addEventListener(ev, () => (paused = val));
+    }
+    setInterval(() => { if (!paused && !document.hidden) go(current() + 1); }, 5000);
+  });
+</script>

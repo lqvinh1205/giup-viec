@@ -1,0 +1,35 @@
+---
+import Icon from './Icon.astro';
+import { site, telHref, zaloHref } from '../config/site';
+---
+<!-- Mobile: thanh dính đáy -->
+<div
+  class="fixed inset-x-0 bottom-0 z-50 grid grid-cols-[1.4fr_1fr_1fr] gap-2 border-t border-line bg-paper px-3 pt-2 shadow-[0_-6px_20px_rgba(31,61,43,.08)] lg:hidden"
+  style="padding-bottom: calc(.5rem + env(safe-area-inset-bottom))"
+>
+  <a href={telHref} data-track="call" data-position="dock" class="btn btn-accent !min-h-14 !px-2 text-[0.95rem]">
+    <Icon name="phone" size={20} /> Gọi ngay
+  </a>
+  <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="dock" class="btn !min-h-14 !px-2 bg-[#0068ff] text-white">
+    <Icon name="zalo" size={22} /> Zalo
+  </a>
+  <a href={site.messenger} target="_blank" rel="noopener" data-track="messenger" data-position="dock" class="btn btn-primary !min-h-14 !px-2">
+    <Icon name="messenger" size={22} /> Chat
+  </a>
+</div>
+
+<!-- Desktop: cụm nút nổi -->
+<div class="fixed right-6 bottom-6 z-50 hidden flex-col items-end gap-3 lg:flex">
+  <a href={site.messenger} target="_blank" rel="noopener" data-track="messenger" data-position="float"
+     class="grid size-13 place-items-center rounded-full bg-primary text-white shadow-lg transition hover:scale-105" aria-label="Nhắn Messenger">
+    <Icon name="messenger" size={26} />
+  </a>
+  <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="float"
+     class="grid size-13 place-items-center rounded-full bg-[#0068ff] text-white shadow-lg transition hover:scale-105" aria-label="Nhắn Zalo">
+    <Icon name="zalo" size={26} />
+  </a>
+  <a href={telHref} data-track="call" data-position="float"
+     class="flex h-13 items-center gap-2 rounded-full bg-cta pr-5 pl-4 font-semibold text-white no-underline shadow-lg transition hover:bg-cta-hover">
+    <Icon name="phone" size={22} /> {site.hotlineDisplay}
+  </a>
+</div>

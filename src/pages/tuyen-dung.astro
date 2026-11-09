@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FAQ from '../components/FAQ.astro';
+import Icon from '../components/Icon.astro';
+import { site, telHref, zaloHref } from '../config/site';
+import { breadcrumb, faqPage } from '../lib/schema';
+
+const crumbs = [{ name: 'Tuyển dụng', href: '/tuyen-dung/' }];
+const perks = [
+  { icon: 'doc', t: 'Không thu phí người lao động', d: 'Đăng ký và nhận việc hoàn toàn miễn phí.' },
+  { icon: 'shield', t: 'Hợp đồng rõ ràng', d: 'Lương, ngày nghỉ, công việc ghi bằng văn bản. Trung tâm đứng ra hỗ trợ khi có vấn đề.' },
+  { icon: 'home', t: 'Gia đình được chọn lọc', d: 'Chúng tôi trao đổi kỹ với gia đình trước khi giới thiệu chị đến làm.' },
+  { icon: 'swap', t: 'Không hợp, đổi chỗ làm', d: 'Nếu gia đình không phù hợp, trung tâm tìm nơi làm mới cho chị.' },
+];
+const faqs = [
+  { q: 'Tôi cần mang theo giấy tờ gì?', a: 'Căn cước công dân bản gốc và giấy xác nhận của địa phương (nếu có).' },
+  { q: 'Tôi ở tỉnh xa có đăng ký được không?', a: 'Được. Nhắn Zalo cho trung tâm để được phỏng vấn qua điện thoại trước, sau đó trung tâm hướng dẫn chị lên Hà Nội hoặc đi thẳng đến nhà gia đình.' },
+  { q: 'Mức lương bao nhiêu?', a: 'Từ 7 đến 12 triệu đồng/tháng tùy công việc, được bao ăn ở với người ở lại. Chăm bệnh tại viện tính theo ngày.' },
+];
+---
+<BaseLayout
+  title="Tuyển người giúp việc, chăm bé, chăm người già – Lương 7–12 triệu"
+  description="Tuyển người giúp việc gia đình, chăm bé, chăm người già, chăm bệnh. Lương 7–12 triệu/tháng, bao ăn ở, không thu phí. Nhận người ở mọi tỉnh."
+  jsonLd={[breadcrumb(crumbs), faqPage(faqs)]}
+>
+  <PageHeader eyebrow="Dành cho người lao động" title="Tìm việc giúp việc nhà, không mất phí" lead="Lương 7–12 triệu/tháng, bao ăn ở. Nhận chị em ở mọi tỉnh thành, có kinh nghiệm hay chưa đều được hướng dẫn." crumbs={crumbs}>
+    <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+      <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="recruit" class="btn btn-accent"><Icon name="zalo" size={22} /> Nhắn Zalo đăng ký</a>
+      <a href={telHref} data-track="call" data-position="recruit" class="btn btn-ghost"><Icon name="phone" size={20} /> Gọi {site.hotlineDisplay}</a>
+    </div>
+  </PageHeader>
+
+  <section class="wrap py-14">
+    <h2 class="text-3xl">Vì sao chị em chọn làm qua trung tâm</h2>
+    <ul class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {perks.map((p) => (
+        <li>
+          <Icon name={p.icon} size={30} class="text-primary-soft" />
+          <h3 class="mt-3 text-xl">{p.t}</h3>
+          <p class="mt-2 text-ink-soft">{p.d}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="bg-paper-deep py-14">
+    <div class="wrap grid gap-10 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl">Các vị trí đang tuyển</h2>
+        <ul class="mt-6 space-y-3">
+          {['Giúp việc gia đình ở lại', 'Giúp việc theo giờ', 'Chăm bé, chăm trẻ sơ sinh', 'Chăm sóc người già', 'Chăm bệnh tại bệnh viện', 'Tạp vụ văn phòng'].map((v) => (
+            <li class="flex gap-3 rounded-2xl bg-paper p-4 font-semibold text-primary"><Icon name="check" size={22} class="shrink-0 text-primary-soft" />{v}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-3xl">Đăng ký thế nào?</h2>
+        <ol class="mt-6 space-y-5">
+          <li><strong class="text-primary">1. Nhắn Zalo hoặc gọi điện</strong><br /><span class="text-ink-soft">Cho biết tên, tuổi, quê quán, kinh nghiệm và công việc muốn làm.</span></li>
+          <li><strong class="text-primary">2. Phỏng vấn</strong><br /><span class="text-ink-soft">Tại văn phòng ở Hà Nội hoặc qua điện thoại nếu ở xa.</span></li>
+          <li><strong class="text-primary">3. Nhận việc</strong><br /><span class="text-ink-soft">Trung tâm giới thiệu gia đình phù hợp và hỗ trợ ký hợp đồng.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap grid gap-10 py-14 lg:grid-cols-[1fr_1.6fr]">
+    <h2 class="text-3xl">Chị em hay hỏi</h2>
+    <FAQ faqs={faqs} />
+  </section>
+</BaseLayout>

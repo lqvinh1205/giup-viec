@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PriceTable from '../components/PriceTable.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import Icon from '../components/Icon.astro';
+import { breadcrumb, faqPage } from '../lib/schema';
+import { telHref, zaloHref } from '../config/site';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const crumbs = [{ name: 'Bảng giá', href: '/bang-gia/' }];
+const faqs = [
+  { q: 'Giá trên có phải giá cố định không?', a: 'Không. Đây là giá tham khảo để anh chị dự trù chi phí. Giá thực tế được thỏa thuận trực tiếp sau khi trung tâm nắm rõ nhu cầu của gia đình.' },
+  { q: 'Giá trên đã bao gồm phí trung tâm chưa?', a: 'Chưa. Đây là mức lương trả trực tiếp cho người giúp việc. Phí trung tâm tính một lần khi ký hợp đồng và được báo rõ trước.' },
+  { q: 'Vì sao cùng một dịch vụ lại có khoảng giá?', a: 'Giá phụ thuộc số người trong nhà, diện tích, số tầng, yêu cầu đặc biệt (chăm trẻ sơ sinh, người nằm một chỗ) và thời điểm thuê (dịp Tết).' },
+  { q: 'Có phải trả thêm tiền ăn ở cho người giúp việc không?', a: 'Với người ở lại, gia đình lo chỗ ở và bữa ăn hằng ngày. Khoản này không trừ vào lương.' },
+];
+---
+<BaseLayout
+  title="Bảng giá tham khảo thuê người giúp việc 2026"
+  description="Giá tham khảo thuê người giúp việc: ở lại nhà từ 7,5 triệu, theo giờ từ 70.000đ, chăm bé, chăm người già, chăm bệnh. Báo giá chính xác khi trao đổi trực tiếp."
+  jsonLd={[breadcrumb(crumbs), faqPage(faqs)]}
+>
+  <PageHeader title="Bảng giá tham khảo thuê người giúp việc" eyebrow="Cập nhật 2026" lead="Khung giá dưới đây giúp anh chị dự trù chi phí. Giá thực tế được thỏa thuận trực tiếp theo nhu cầu của từng gia đình." crumbs={crumbs} />
+
+  <aside class="wrap pt-8" aria-label="Lưu ý về giá">
+    <div class="flex flex-col gap-4 rounded-2xl border-l-4 border-accent bg-note p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+      <p class="max-w-2xl"><strong class="text-primary">Giá chỉ mang tính tham khảo.</strong> Mức lương phụ thuộc số người trong nhà, diện tích, khối lượng công việc và yêu cầu riêng. Liên hệ để được tư vấn và thỏa thuận mức giá phù hợp.</p>
+      <div class="flex shrink-0 gap-2">
+        <a href={telHref} data-track="call" data-position="pricing-note" class="btn btn-accent"><Icon name="phone" size={20} /> Gọi</a>
+        <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="pricing-note" class="btn btn-ghost"><Icon name="zalo" size={22} /> Zalo</a>
+      </div>
+    </div>
+  </aside>
+
+  <nav aria-label="Mục lục bảng giá" class="wrap pt-8">
+    <ul class="flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none]">
+      {services.map((s) => <li class="shrink-0"><a href={`#${s.id}`} class="inline-block rounded-full border border-line bg-white/60 px-4 py-2 text-sm font-semibold text-primary no-underline hover:border-primary">{s.data.name}</a></li>)}
+    </ul>
+  </nav>
+
+  <div class="wrap space-y-14 py-10">
+    {services.map((s) => (
+      <section id={s.id} aria-labelledby={`h-${s.id}`}>
+        <div class="mb-5 flex items-center gap-3">
+          <span class="grid size-11 place-items-center rounded-2xl bg-paper-deep text-primary"><Icon name={s.data.icon} size={24} /></span>
+          <h2 id={`h-${s.id}`} class="text-2xl sm:text-3xl">{s.data.name}</h2>
+        </div>
+        <PriceTable prices={s.data.prices} />
+        <a href={`/dich-vu/${s.id}/`} class="mt-4 inline-block font-semibold text-primary">Chi tiết dịch vụ {s.data.name.toLowerCase()} →</a>
+      </section>
+    ))}
+  </div>
+
+  <section class="wrap grid gap-10 py-10 lg:grid-cols-[1fr_1.6fr]">
+    <h2 class="text-3xl">Hỏi đáp về chi phí</h2>
+    <FAQ faqs={faqs} />
+  </section>
+
+  <CTASection title="Trao đổi trực tiếp để có mức giá phù hợp" text="Kể nhu cầu của gia đình, tư vấn viên báo giá cụ thể và thỏa thuận cùng anh chị trước khi gặp người." position="pricing-bottom" />
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { site, telHref, zaloHref } from '../config/site';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const year = new Date().getFullYear();
+const a = site.address;
+---
+<footer class="bg-primary text-paper/85">
+  <div class="wrap grid gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
+    <div>
+      <Logo light />
+      <p class="mt-4 max-w-sm text-[0.95rem]">{site.description}</p>
+      <address class="mt-5 space-y-2 text-[0.95rem] not-italic">
+        <p class="flex gap-2"><Icon name="pin" size={20} class="mt-1 shrink-0 text-accent" />{a.street}, {a.ward}, {a.district}, {a.city}</p>
+        <p class="flex gap-2"><Icon name="phone" size={20} class="mt-1 shrink-0 text-accent" />
+          <a href={telHref} data-track="call" data-position="footer" class="text-paper">{site.hotlineDisplay}</a></p>
+        <p class="flex gap-2"><Icon name="mail" size={20} class="mt-1 shrink-0 text-accent" />
+          <a href={`mailto:${site.email}`} class="text-paper">{site.email}</a></p>
+        <p class="flex gap-2"><Icon name="clock" size={20} class="mt-1 shrink-0 text-accent" />{site.hours.label}</p>
+      </address>
+    </div>
+
+    <div>
+      <h2 class="font-display text-lg text-paper">Dịch vụ</h2>
+      <ul class="mt-4 space-y-2 text-[0.95rem]">
+        {services.map((s) => <li><a href={`/dich-vu/${s.id}/`} class="text-paper/85 no-underline hover:text-white hover:underline">{s.data.name}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="font-display text-lg text-paper">Thông tin</h2>
+      <ul class="mt-4 space-y-2 text-[0.95rem]">
+        <li><a href="/bang-gia/" class="text-paper/85 no-underline hover:underline">Bảng giá</a></li>
+        <li><a href="/cam-nang/" class="text-paper/85 no-underline hover:underline">Cẩm nang thuê giúp việc</a></li>
+        <li><a href="/tuyen-dung/" class="text-paper/85 no-underline hover:underline">Tuyển người giúp việc</a></li>
+        <li><a href="/gioi-thieu/" class="text-paper/85 no-underline hover:underline">Giới thiệu</a></li>
+        <li><a href="/chinh-sach-bao-hanh/" class="text-paper/85 no-underline hover:underline">Chính sách đổi người</a></li>
+        <li><a href="/chinh-sach-bao-mat/" class="text-paper/85 no-underline hover:underline">Chính sách bảo mật</a></li>
+        <li><a href="/lien-he/" class="text-paper/85 no-underline hover:underline">Liên hệ</a></li>
+      </ul>
+      <div class="mt-6 flex gap-3">
+        <a href={site.fanpage} target="_blank" rel="noopener" aria-label="Fanpage Facebook" class="grid size-11 place-items-center rounded-full border border-paper/30 text-paper hover:bg-paper hover:text-primary"><Icon name="facebook" size={20} /></a>
+        <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="footer" aria-label="Zalo" class="grid size-11 place-items-center rounded-full border border-paper/30 text-paper hover:bg-paper hover:text-primary"><Icon name="zalo" size={20} /></a>
+        <a href={site.messenger} target="_blank" rel="noopener" data-track="messenger" data-position="footer" aria-label="Messenger" class="grid size-11 place-items-center rounded-full border border-paper/30 text-paper hover:bg-paper hover:text-primary"><Icon name="messenger" size={20} /></a>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-paper/15">
+    <p class="wrap py-5 text-sm text-paper/60">© {year} {site.name}. Trung tâm đặt tại Hà Nội, kết nối người giúp việc và gia đình trên toàn quốc.</p>
+  </div>
+</footer>

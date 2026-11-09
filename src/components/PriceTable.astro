@@ -1,0 +1,32 @@
+---
+interface Props { prices: { name: string; price: string; note?: string }[] }
+const { prices } = Astro.props;
+---
+<!-- Desktop: bảng; mobile: danh sách thẻ -->
+<table class="hidden w-full border-collapse text-left sm:table">
+  <thead>
+    <tr class="border-b-2 border-primary text-sm text-ink-soft">
+      <th class="py-3 pr-4 font-semibold">Gói</th>
+      <th class="py-3 pr-4 font-semibold">Giá tham khảo</th>
+      <th class="py-3 font-semibold">Ghi chú</th>
+    </tr>
+  </thead>
+  <tbody>
+    {prices.map((p) => (
+      <tr class="border-b border-line">
+        <td class="py-4 pr-4 font-semibold text-primary">{p.name}</td>
+        <td class="py-4 pr-4 font-display text-lg whitespace-nowrap text-accent-deep">{p.price}</td>
+        <td class="py-4 text-[0.95rem] text-ink-soft">{p.note}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+<ul class="space-y-3 sm:hidden">
+  {prices.map((p) => (
+    <li class="rounded-2xl border border-line bg-white/60 p-4">
+      <p class="font-semibold text-primary">{p.name}</p>
+      <p class="mt-1 font-display text-xl text-accent-deep">{p.price}</p>
+      {p.note && <p class="mt-1 text-sm text-ink-soft">{p.note}</p>}
+    </li>
+  ))}
+</ul>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { telHref } from '../config/site';
+---
+<BaseLayout title="Không tìm thấy trang" description="Trang bạn tìm không tồn tại." noindex>
+  <section class="wrap grid min-h-[60vh] place-items-center py-16 text-center">
+    <div>
+      <p class="font-display text-8xl text-primary-soft">404</p>
+      <h1 class="mt-4 text-3xl">Trang này đã dọn đi chỗ khác</h1>
+      <p class="mt-3 text-ink-soft">Có thể đường dẫn đã thay đổi. Anh chị thử về trang chủ hoặc gọi cho chúng tôi.</p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <a href="/" class="btn btn-primary">Về trang chủ</a>
+        <a href={telHref} data-track="call" data-position="404" class="btn btn-ghost"><Icon name="phone" size={20} /> Gọi tư vấn</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

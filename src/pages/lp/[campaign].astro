@@ -1,0 +1,61 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import Steps from '../../components/Steps.astro';
+import FAQ from '../../components/FAQ.astro';
+import ReviewCard from '../../components/ReviewCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import Icon from '../../components/Icon.astro';
+import { campaigns } from '../../config/campaigns';
+import { site, telHref, zaloHref } from '../../config/site';
+import { getReviews } from '../../lib/reviews';
+
+export function getStaticPaths() {
+  return campaigns.map((c) => ({ params: { campaign: c.slug }, props: { c } }));
+}
+const { c } = Astro.props;
+const svc = await getEntry('services', c.service);
+if (!svc) throw new Error(`Campaign ${c.slug}: không tìm thấy dịch vụ ${c.service}`);
+const d = svc.data;
+const reviews = (await getReviews(c.service)).slice(0, 2);
+const pos = `lp-${c.slug}`;
+---
+<BaseLayout title={`${c.headline} | ${site.shortName}`} description={c.sub} noindex minimal>
+  <section class="bg-paper-deep">
+    <div class="wrap py-10 sm:py-16">
+      <p class="eyebrow">{d.name} · Hà Nội và toàn quốc</p>
+      <h1 class="mt-4 max-w-3xl text-[2.2rem] sm:text-5xl">{c.headline}</h1>
+      <p class="mt-4 max-w-2xl text-lg text-ink-soft">{c.sub}</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href={telHref} data-track="call" data-position={pos} class="btn btn-accent text-lg"><Icon name="phone" size={22} /> Gọi {site.hotlineDisplay}</a>
+        <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position={pos} class="btn btn-ghost text-lg"><Icon name="zalo" size={24} /> Nhắn Zalo</a>
+      </div>
+      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem] font-semibold text-primary">
+        {['Hồ sơ xác minh', 'Làm thử trước khi nhận', 'Đổi người miễn phí', 'Hợp đồng ba bên'].map((t) => (
+          <li class="flex items-center gap-1.5"><Icon name="check" size={20} class="text-primary-soft" />{t}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap py-14">
+    <h2 class="text-3xl">Công việc đảm nhận</h2>
+    <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+      {d.scope.map((s) => <li class="flex gap-3 rounded-2xl bg-white/60 p-4"><Icon name="check" size={22} class="mt-0.5 shrink-0 text-primary-soft" />{s}</li>)}
+    </ul>
+    <h2 class="mt-14 mb-6 text-3xl">Bảng giá</h2>
+    <PriceTable prices={d.prices} />
+    <h2 class="mt-14 mb-10 text-3xl">Quy trình</h2>
+    <Steps />
+    {reviews.length > 0 && (
+      <div class="mt-14 grid gap-8 sm:grid-cols-2">{reviews.map((r, i) => <ReviewCard index={i} {...r} />)}</div>
+    )}
+    {d.faqs.length > 0 && (<><h2 class="mt-14 mb-6 text-3xl">Câu hỏi thường gặp</h2><FAQ faqs={d.faqs} /></>)}
+  </section>
+
+  <CTASection position={`${pos}-bottom`} />
+  <p class="wrap pb-10 text-center text-sm text-ink-soft">
+    {site.name} · {site.address.district}, {site.address.city} · <a href="/chinh-sach-bao-mat/">Chính sách bảo mật</a>
+  </p>
+</BaseLayout>

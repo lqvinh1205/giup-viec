@@ -1,0 +1,103 @@
+---
+import { getCollection, render } from 'astro:content';
+import { serviceImage } from '../../lib/images';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import Steps from '../../components/Steps.astro';
+import FAQ from '../../components/FAQ.astro';
+import ReviewCard from '../../components/ReviewCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import Icon from '../../components/Icon.astro';
+import { site, telHref, zaloHref } from '../../config/site';
+import { breadcrumb, faqPage, service, formatVnd } from '../../lib/schema';
+import { getReviews } from '../../lib/reviews';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((s) => ({ params: { slug: s.id }, props: { entry: s } }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const path = `/dich-vu/${entry.id}/`;
+const crumbs = [{ name: 'Dịch vụ', href: '/dich-vu/' }, { name: d.name, href: path }];
+
+const reviews = (await getReviews(entry.id)).slice(0, 2);
+const others = (await getCollection('services')).filter((s) => s.id !== entry.id).sort((a, b) => a.data.order - b.data.order);
+const posts = (await getCollection('blog', (p) => p.data.service === entry.id)).slice(0, 3);
+
+const jsonLd = [breadcrumb(crumbs), service(d, path), ...(d.faqs.length ? [faqPage(d.faqs)] : [])];
+---
+<BaseLayout title={d.title} description={d.description} jsonLd={jsonLd}>
+  <PageHeader title={d.h1} lead={d.summary} crumbs={crumbs} image={serviceImage(entry.id)}>
+    <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+      <p class="font-display text-2xl text-accent-deep">từ {formatVnd(d.priceFrom)}<span class="text-base text-ink-soft">/{d.priceUnit}</span><span class="block font-sans text-sm font-normal text-ink-soft">Giá tham khảo, thỏa thuận khi tư vấn</span></p>
+      <div class="flex flex-wrap gap-3">
+        <a href={telHref} data-track="call" data-position="service-header" class="btn btn-accent"><Icon name="phone" size={20} /> Gọi tư vấn</a>
+        <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="service-header" class="btn btn-ghost"><Icon name="zalo" size={22} /> Zalo</a>
+      </div>
+    </div>
+  </PageHeader>
+
+  <div class="wrap grid gap-12 py-14 lg:grid-cols-[1fr_20rem]">
+    <article>
+      <div class="prose-vn"><Content /></div>
+
+      <h2 class="mt-12 text-3xl">Công việc người giúp việc đảm nhận</h2>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+        {d.scope.map((s) => (
+          <li class="flex gap-3 rounded-2xl bg-white/60 p-4"><Icon name="check" size={22} class="mt-0.5 shrink-0 text-primary-soft" />{s}</li>
+        ))}
+      </ul>
+
+      <h2 id="bang-gia" class="mt-14 mb-6 text-3xl">Bảng giá {d.name.toLowerCase()}</h2>
+      <PriceTable prices={d.prices} />
+      <p class="mt-4 text-sm text-ink-soft"><strong class="text-ink">Giá trên chỉ mang tính tham khảo</strong>, mức cụ thể được thỏa thuận trực tiếp theo nhu cầu của gia đình. Mức lương trả trực tiếp cho người giúp việc. Phí dịch vụ trung tâm báo trước khi ký hợp đồng. Xem <a href="/bang-gia/" class="text-primary-soft underline">bảng giá tất cả dịch vụ</a>.</p>
+
+      <h2 class="mt-14 mb-10 text-3xl">Quy trình thuê</h2>
+      <Steps />
+
+      {reviews.length > 0 && (
+        <>
+          <h2 class="mt-14 mb-10 text-3xl">Đánh giá từ gia đình</h2>
+          <div class="grid gap-8 sm:grid-cols-2">{reviews.map((r, i) => <ReviewCard index={i} {...r} />)}</div>
+        </>
+      )}
+
+      {d.faqs.length > 0 && (
+        <>
+          <h2 class="mt-14 mb-6 text-3xl">Câu hỏi thường gặp</h2>
+          <FAQ faqs={d.faqs} />
+        </>
+      )}
+
+      {posts.length > 0 && (
+        <>
+          <h2 class="mt-14 mb-4 text-2xl">Bài viết liên quan</h2>
+          <ul class="space-y-2">{posts.map((p) => <li><a href={`/cam-nang/${p.id}/`} class="font-semibold text-primary">{p.data.title}</a></li>)}</ul>
+        </>
+      )}
+    </article>
+
+    <aside class="space-y-6 lg:sticky lg:top-24 lg:self-start">
+      <div class="bg-primary p-6 text-paper" style="border-radius: var(--radius-blob)">
+        <p class="font-display text-xl text-paper">Cần người cho gia đình?</p>
+        <p class="mt-2 text-[0.95rem] text-paper/80">Phản hồi trong {site.responseTime}. {site.hours.label}.</p>
+        <a href={telHref} data-track="call" data-position="sidebar" class="btn btn-accent mt-5 w-full"><Icon name="phone" size={20} /> {site.hotlineDisplay}</a>
+        <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="sidebar" class="btn mt-3 w-full border-2 border-paper/40 text-paper hover:bg-paper/10"><Icon name="zalo" size={22} /> Nhắn Zalo</a>
+      </div>
+      <nav aria-label="Dịch vụ khác">
+        <p class="font-display text-lg text-primary">Dịch vụ khác</p>
+        <ul class="mt-3 divide-y divide-line">
+          {others.map((o) => (
+            <li><a href={`/dich-vu/${o.id}/`} class="flex items-center justify-between py-3 text-ink no-underline hover:text-primary-soft">{o.data.name}<Icon name="arrow" size={18} /></a></li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+  <CTASection position="service-bottom" />
+</BaseLayout>

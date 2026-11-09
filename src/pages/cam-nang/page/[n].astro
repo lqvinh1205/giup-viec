@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import PostList from '../../../components/PostList.astro';
+import { breadcrumb } from '../../../lib/schema';
+import { getPosts, PAGE_SIZE } from '../../../lib/blog';
+
+// Trang 1 nằm ở /cam-nang/, file này sinh từ trang 2 trở đi.
+export async function getStaticPaths() {
+  const all = await getPosts();
+  const lastPage = Math.ceil(all.length / PAGE_SIZE);
+  return Array.from({ length: Math.max(0, lastPage - 1) }, (_, i) => {
+    const n = i + 2;
+    return { params: { n: String(n) }, props: { posts: all.slice((n - 1) * PAGE_SIZE, n * PAGE_SIZE), page: n, lastPage } };
+  });
+}
+const { posts, page, lastPage } = Astro.props;
+const crumbs = [{ name: 'Cẩm nang', href: '/cam-nang/' }, { name: `Trang ${page}`, href: Astro.url.pathname }];
+---
+<BaseLayout
+  title={`Cẩm nang thuê người giúp việc – Trang ${page}`}
+  description={`Kinh nghiệm thuê người giúp việc gia đình, trang ${page}.`}
+  jsonLd={[breadcrumb(crumbs)]}
+>
+  <PageHeader title={`Cẩm nang – trang ${page}`} crumbs={crumbs} />
+  <section class="wrap py-14"><PostList posts={posts} page={page} lastPage={lastPage} /></section>
+</BaseLayout>
