@@ -1,5 +1,5 @@
 // TODO: Điền thông tin thật của trung tâm trước khi deploy.
-export const SITE_URL = 'https://giupviec-example.vn'; // TODO: tên miền thật
+export const SITE_URL = 'https://giupviecangia.com'; // TODO: tên miền thật
 
 export const site = {
   name: 'Giúp Việc An Gia', // TODO: tên thương hiệu
@@ -8,22 +8,22 @@ export const site = {
   description:
     'Trung tâm giúp việc nhà tại Hà Nội: giúp việc ở lại, theo giờ, chăm bé, chăm người già, chăm người bệnh. Hồ sơ xác minh, đổi người miễn phí, giá công khai.',
 
-  hotline: '0900000000', // TODO: số hotline (không dấu cách)
-  hotlineDisplay: '0900 000 000',
-  zalo: '0900000000', // TODO: số Zalo
-  fanpage: 'https://www.facebook.com/giupviec.example', // TODO
-  messenger: 'https://m.me/giupviec.example', // TODO
-  email: 'lienhe@giupviec-example.vn', // TODO
+  hotline: '0359102989', // TODO: số hotline (không dấu cách)
+  hotlineDisplay: '035 910 2989',
+  zalo: '0359102989', // TODO: số Zalo
+  fanpage: 'https://www.facebook.com/giupviecangia', // TODO
+  messenger: 'https://www.facebook.com/messages/e2ee/t/9725879110829535', // TODO
+  email: 'lienhe@giupviecangia.com', // TODO
 
   address: {
-    street: 'Số 1 Đường Ví Dụ', // TODO
-    ward: 'Phường Dịch Vọng',
-    district: 'Quận Cầu Giấy',
+    street: 'Số 4 Ngõ 50', // TODO
+    ward: 'Đường Đình Thôn',
+    district: 'Quận Từ Liêm',
     city: 'Hà Nội',
     postalCode: '100000',
   },
-  geo: { lat: 21.0333, lng: 105.7942 }, // TODO: tọa độ thật
-  mapEmbed: '', // TODO: link nhúng Google Maps (src của iframe)
+  geo: { lat: 21.020609118272585, lng: 105.77776886781507 }, // TODO: tọa độ thật
+  mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4519.600204214624!2d105.77520467600772!3d21.02044888062626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454ac74a16f4f%3A0xef808db1b5c4bc97!2zNCBOZy4gNTAgxJAuIMSQw6xuaCBUaMO0biwgxJDDrG5oIFRow7RuLCBU4burIExpw6ptLCBIw6AgTuG7mWksIFZpZXRuYW0!5e1!3m2!1sen!2s!4v1794210552571!5m2!1sen!2s', // TODO: link nhúng Google Maps (src của iframe)
 
   // Giờ làm thật — chỉ ghi đúng những gì trung tâm đáp ứng được.
   hours: { label: '7:30 – 20:00, tất cả các ngày', opens: '07:30', closes: '20:00' },
