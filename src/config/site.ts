@@ -9,7 +9,9 @@ export const site = {
     'Trung tâm giúp việc nhà tại Hà Nội: giúp việc ở lại, theo giờ, chăm bé, chăm người già, chăm người bệnh. Hồ sơ xác minh, đổi người miễn phí, giá công khai.',
 
   hotline: '0826722314', // TODO: số hotline (không dấu cách)
+  hotline1: '0399359431', // TODO: số hotline (không dấu cách)
   hotlineDisplay: '0826 722 314',
+  hotlineDisplay1: '0399 359 431',
   zalo: '0826722314', // TODO: số Zalo
   fanpage: 'https://www.facebook.com/profile.php?id=100078073040285', // TODO
   messenger: 'https://m.me/100078073040285', // TODO
@@ -37,6 +39,7 @@ export const site = {
 };
 
 export const telHref = `tel:+84${site.hotline.replace(/^0/, '')}`;
+export const telHref1 = `tel:+84${site.hotline1.replace(/^0/, '')}`;
 export const zaloHref = `https://zalo.me/${site.zalo}`;
 
 export const nav = [

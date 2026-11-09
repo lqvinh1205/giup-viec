@@ -1,21 +1,90 @@
 ---
 import Icon from './Icon.astro';
-import { site, telHref, zaloHref } from '../config/site';
+import { site, telHref, zaloHref, telHref1 } from '../config/site';
 ---
 <!-- Mobile: thanh dính đáy -->
 <div
   class="fixed inset-x-0 bottom-0 z-50 grid grid-cols-[1.4fr_1fr_1fr] gap-2 border-t border-line bg-paper px-3 pt-2 shadow-[0_-6px_20px_rgba(31,61,43,.08)] lg:hidden"
   style="padding-bottom: calc(.5rem + env(safe-area-inset-bottom))"
 >
-  <a href={telHref} data-track="call" data-position="dock" class="btn btn-accent !min-h-14 !px-2 text-[0.95rem]">
+  <button
+    type="button"
+    id="open-call-modal"
+    data-track="call"
+    data-position="dock"
+    class="btn btn-accent !min-h-14 !px-2 text-[0.95rem]"
+  >
     <Icon name="phone" size={20} /> Gọi ngay
-  </a>
+  </button>
   <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="dock" class="btn !min-h-14 !px-2 bg-[#0068ff] text-white">
     <Icon name="zalo" size={22} /> Zalo
   </a>
   <a href={site.messenger} target="_blank" rel="noopener" data-track="messenger" data-position="dock" class="btn btn-primary !min-h-14 !px-2">
     <Icon name="messenger" size={22} /> Chat
   </a>
+
+  <!-- Mobile: box call --> 
+  <div
+    id="call-modal"
+    class="fixed inset-0 z-[60] hidden lg:hidden"
+    aria-hidden="true"
+  >
+    <!-- Overlay -->
+    <div
+      id="call-overlay"
+      class="absolute inset-0 bg-black/50"
+    ></div>
+
+    <!-- Bottom Sheet -->
+    <div
+      class="absolute inset-x-0 bottom-0 rounded-t-2xl bg-paper p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] shadow-xl"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="call-modal-title"
+    >
+      <div class="mx-auto mb-4 h-1 w-10 rounded-full bg-gray-300"></div>
+
+      <h3 id="call-modal-title" class="mb-1 text-lg font-bold">
+        Liên hệ qua điện thoại
+      </h3>
+
+      <div class="flex flex-col gap-3">
+        <a
+          href={telHref}
+          data-track="call"
+          data-position="dock"
+          class="btn btn-accent !min-h-16 w-full justify-between !px-4 text-white no-underline"
+        >
+          <div class="flex flex-col items-start">
+            <span class="text-sm font-normal opacity-90">Hotline 1</span>
+            <span class="text-lg font-bold">{site.hotlineDisplay}</span>
+          </div>
+          <Icon name="phone" size={22} />
+        </a>
+
+        <a
+          href={telHref1}
+          data-track="call"
+          data-position="dock"
+          class="btn btn-accent !min-h-16 w-full justify-between !px-4 text-white no-underline"
+        >
+          <div class="flex flex-col items-start">
+            <span class="text-sm font-normal opacity-90">Hotline 2</span>
+            <span class="text-lg font-bold">{site.hotlineDisplay1}</span>
+          </div>
+          <Icon name="phone" size={22} />
+        </a>
+      </div>
+
+      <button
+        id="close-call-modal"
+        type="button"
+        class="mt-4 w-full rounded-xl bg-gray-100 py-3 font-semibold"
+      >
+        Đóng
+      </button>
+    </div>
+  </div>
 </div>
 
 <!-- Desktop: cụm nút nổi -->
@@ -32,4 +101,35 @@ import { site, telHref, zaloHref } from '../config/site';
      class="flex h-13 items-center gap-2 rounded-full bg-cta pr-5 pl-4 font-semibold text-white no-underline shadow-lg transition hover:bg-cta-hover">
     <Icon name="phone" size={22} /> {site.hotlineDisplay}
   </a>
+  <a href={telHref1} data-track="call" data-position="float"
+     class="flex h-13 items-center gap-2 rounded-full bg-cta pr-5 pl-4 font-semibold text-white no-underline shadow-lg transition hover:bg-cta-hover">
+    <Icon name="phone" size={22} /> {site.hotlineDisplay1}
+  </a>
 </div>
+
+<script>
+  const openBtn = document.getElementById('open-call-modal');
+  const closeBtn = document.getElementById('close-call-modal');
+  const overlay = document.getElementById('call-overlay');
+  const modal = document.getElementById('call-modal');
+
+  function openModal() {
+    modal?.classList.remove('hidden');
+    modal?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal?.classList.add('hidden');
+    modal?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  openBtn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeModal();
+  });
+</script>
