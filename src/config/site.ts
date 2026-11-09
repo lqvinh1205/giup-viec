@@ -11,8 +11,8 @@ export const site = {
   hotline: '0826722314', // TODO: số hotline (không dấu cách)
   hotlineDisplay: '0826 722 314',
   zalo: '0826722314', // TODO: số Zalo
-  fanpage: 'https://www.facebook.com/giupviecangia', // TODO
-  messenger: 'https://www.facebook.com/messages/e2ee/t/9725879110829535', // TODO
+  fanpage: 'https://www.facebook.com/profile.php?id=100078073040285', // TODO
+  messenger: 'https://m.me/100078073040285', // TODO
   email: 'lienhe@giupviecangia.com', // TODO
 
   address: {
