@@ -6,7 +6,7 @@ description: "Người chăm sóc ông bà tại nhà kiên nhẫn, chu đáo: n
 h1: Người chăm sóc người già tại nhà
 summary: Nấu ăn, vệ sinh cá nhân, đưa đi dạo, nhắc uống thuốc. Kiên nhẫn, chu đáo với ông bà.
 icon: elder
-priceFrom: 9000000
+priceFrom: 10000000
 priceUnit: tháng
 prices:
   - name: Ông bà còn tự đi lại được

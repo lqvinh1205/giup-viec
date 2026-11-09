@@ -8,9 +8,9 @@ export const site = {
   description:
     'Trung tâm giúp việc nhà tại Hà Nội: giúp việc ở lại, theo giờ, chăm bé, chăm người già, chăm người bệnh. Hồ sơ xác minh, đổi người miễn phí, giá công khai.',
 
-  hotline: '0359102989', // TODO: số hotline (không dấu cách)
-  hotlineDisplay: '035 910 2989',
-  zalo: '0359102989', // TODO: số Zalo
+  hotline: '0826722314', // TODO: số hotline (không dấu cách)
+  hotlineDisplay: '0826 722 314',
+  zalo: '0826722314', // TODO: số Zalo
   fanpage: 'https://www.facebook.com/giupviecangia', // TODO
   messenger: 'https://www.facebook.com/messages/e2ee/t/9725879110829535', // TODO
   email: 'lienhe@giupviecangia.com', // TODO

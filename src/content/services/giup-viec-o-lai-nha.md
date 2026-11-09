@@ -6,7 +6,7 @@ description: Người giúp việc ở lại nhà dọn dẹp, nấu ăn, giặt
 h1: Giúp việc gia đình ở lại nhà
 summary: Dọn dẹp, nấu ăn, giặt là, đi chợ. Ở cùng gia đình, có ngày nghỉ cố định trong tháng.
 icon: home
-priceFrom: 7500000
+priceFrom: 8000000
 priceUnit: tháng
 prices:
   - name: Gia đình 2–4 người, nhà ≤ 100m²

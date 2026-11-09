@@ -6,7 +6,7 @@ description: "Người chăm bé có kinh nghiệm chăm trẻ sơ sinh và tr�
 h1: Giúp việc chăm bé, trông trẻ tại nhà
 summary: "Chăm trẻ sơ sinh và trẻ nhỏ: tắm, pha sữa, nấu ăn dặm, ru ngủ. Người có con, có kinh nghiệm thực tế."
 icon: baby
-priceFrom: 8500000
+priceFrom: 9000000
 priceUnit: tháng
 prices:
   - name: Trông bé từ 1 tuổi trở lên
