@@ -87,6 +87,7 @@ Nội dung bài viết mô tả dịch vụ (xem mục 5 về cách viết).
   | `src/pages/bang-gia.astro` | `description` (giá ở lại nhà, theo giờ), FAQ |
   | `src/config/campaigns.ts` | `sub` của landing page (giúp việc gia đình: "từ … triệu/tháng") |
   | `src/content/blog/bang-gia-thue-giup-viec-2026.md` | Bảng "Mức lương theo từng loại dịch vụ", mục "Những yếu tố làm giá cao hơn" (so sánh theo số người, giá Tết) |
+  | `src/content/blog/giup-viec-o-lai-hay-theo-gio.md` | Giá ở lại nhà, giá theo giờ và bảng "chi phí ước tính" theo tháng (tính = số giờ × giá định kỳ) |
   | `src/pages/tuyen-dung.astro` | Lương người lao động "8–14 triệu" (= mức thấp nhất và cao nhất của các dịch vụ theo tháng cho gia đình) ở `title`, `description`, lead, FAQ |
 
   Quy ước: `priceFrom` = mức thấp nhất trong bảng `prices`; các khung giá trong một dịch vụ nối tiếp nhau, không chồng lên nhau.
