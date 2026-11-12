@@ -13,7 +13,7 @@ export function localBusiness() {
     url: abs('/'),
     telephone: `+84${site.hotline.replace(/^0/, '')}`,
     email: site.email,
-    image: abs('/og-default.jpg'),
+    image: abs('/og-an-gia.jpg'),
     logo: abs('/apple-touch-icon.png'),
     foundingDate: String(site.foundingYear),
     address: {
@@ -93,7 +93,7 @@ export function article(a: { title: string; description: string; pubDate: Date; 
     datePublished: a.pubDate.toISOString(),
     dateModified: (a.updatedDate ?? a.pubDate).toISOString(),
     mainEntityOfPage: abs(path),
-    image: abs('/og-default.jpg'),
+    image: abs('/og-an-gia.jpg'),
     author: { '@type': 'Organization', name: site.name, url: abs('/') },
     publisher: { '@id': orgId },
   };

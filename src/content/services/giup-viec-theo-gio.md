@@ -38,4 +38,4 @@ Giúp việc theo giờ phù hợp với căn hộ nhỏ, người sống một 
 
 ## Một buổi dọn dẹp 3 giờ gồm những gì?
 
-Với căn hộ khoảng 70m², 3 giờ đủ để lau toàn bộ sàn, dọn bếp, vệ sinh hai phòng tắm, thay ga giường và giặt một mẻ quần áo. Việc nào cần ưu tiên, anh chị chỉ cần dặn qua Zalo trước buổi làm.
+**Ví dụ tham khảo:** với căn hộ khoảng 70m² được dọn định kỳ, một buổi 3 giờ thường đủ để lau sàn, dọn bếp, vệ sinh hai phòng tắm, thay ga giường và giặt một mẻ quần áo. Khối lượng thực tế còn tùy tình trạng nhà và yêu cầu của anh chị. Nhà lâu chưa dọn nên đặt một buổi tổng vệ sinh trước. Việc nào cần ưu tiên, anh chị chỉ cần dặn qua Zalo trước buổi làm.

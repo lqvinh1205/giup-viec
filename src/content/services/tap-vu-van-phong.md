@@ -8,6 +8,7 @@ summary: Dọn dẹp, pha trà nước, vệ sinh văn phòng theo ca. Có hóa 
 icon: building
 priceFrom: 6500000
 priceUnit: tháng
+audience: business
 prices:
   - name: Tạp vụ bán thời gian (4 giờ/ngày)
     price: 6,5 – 7 triệu/tháng
@@ -30,10 +31,20 @@ faqs:
     a: Có. Khi nhân viên nghỉ phép hoặc ốm, trung tâm cử người thay để không gián đoạn công việc.
 ---
 
-Văn phòng sạch sẽ giúp nhân viên làm việc thoải mái và tạo ấn tượng tốt với khách hàng. Thay vì tự tuyển và quản lý, doanh nghiệp có thể thuê tạp vụ qua trung tâm để **có người thay khi cần** và **chi phí rõ ràng có hóa đơn**.
+Văn phòng sạch giúp nhân viên làm việc thoải mái và tạo ấn tượng tốt với khách đến làm việc. Tự tuyển tạp vụ thì doanh nghiệp phải lo tìm người, quản lý chấm công và tìm người thay mỗi khi nhân viên nghỉ. Thuê qua trung tâm, doanh nghiệp chỉ làm việc với một đầu mối, **có người thay khi nhân viên nghỉ** và **chi phí theo hợp đồng, có hóa đơn**.
+
+## Hình thức cung cấp
+
+- **Bán thời gian (4 giờ/ngày):** phù hợp văn phòng nhỏ, chỉ cần dọn đầu giờ hoặc cuối giờ
+- **Toàn thời gian (8 giờ/ngày):** có người trực suốt giờ làm việc, kiêm pha trà, chuẩn bị phòng họp
+- **Theo buổi:** vệ sinh định kỳ hằng tuần, báo giá theo diện tích
 
 ## Phù hợp với
 
 - Văn phòng từ 10 đến 100 nhân sự
 - Showroom, phòng khám, trung tâm đào tạo
 - Tòa nhà nhỏ cần vệ sinh khu vực chung
+
+## Hợp đồng và thanh toán
+
+Hợp đồng dịch vụ ký giữa doanh nghiệp và trung tâm, xuất hóa đơn theo tháng. Ca làm, phạm vi công việc và việc cử người thay khi nhân viên nghỉ được ghi rõ trong hợp đồng.

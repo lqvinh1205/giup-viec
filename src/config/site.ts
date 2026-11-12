@@ -6,7 +6,7 @@ export const site = {
   shortName: 'An Gia',
   tagline: 'Người giúp việc tận tâm, giá công khai',
   description:
-    'Trung tâm giúp việc nhà tại Hà Nội: giúp việc ở lại, theo giờ, chăm bé, chăm người già, chăm người bệnh. Hồ sơ xác minh, đổi người miễn phí, giá công khai.',
+    'Trung tâm giúp việc nhà tại Hà Nội: giúp việc ở lại, theo giờ, chăm bé, chăm người già, chăm người bệnh. Hồ sơ xác minh, đổi người miễn phí, khung giá công khai.',
 
   hotline: '0826722314', // TODO: số hotline (không dấu cách)
   hotline1: '0399359431', // TODO: số hotline (không dấu cách)

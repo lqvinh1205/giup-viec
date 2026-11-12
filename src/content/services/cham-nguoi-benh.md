@@ -1,13 +1,13 @@
 ---
 order: 5
 name: Chăm người bệnh
-title: Chăm người bệnh tại nhà, bệnh viện – Từ 450.000đ/ngày
+title: Chăm người bệnh tại nhà, bệnh viện – Từ 450.000đ/ca
 description: Người chăm bệnh tại nhà hoặc trong bệnh viện ở Hà Nội. Có thể nhận theo ngày, theo tuần hoặc theo tháng, thay ca cho người nhà.
 h1: Chăm người bệnh tại nhà và tại bệnh viện
 summary: Trực bệnh viện thay người nhà, chăm sau phẫu thuật, chăm người bệnh tại nhà theo ngày hoặc tháng.
 icon: care
 priceFrom: 450000
-priceUnit: ngày
+priceUnit: ca
 prices:
   - name: Chăm tại bệnh viện, ca ngày (12 giờ)
     price: 450.000 – 550.000đ/ca
@@ -18,6 +18,7 @@ prices:
   - name: Chăm tại nhà theo tháng
     price: 11 – 14 triệu/tháng
     note: Tùy tình trạng người bệnh
+medicalLimits: true
 scope:
   - Trực cạnh giường bệnh, gọi điều dưỡng khi cần
   - Hỗ trợ ăn uống, vệ sinh, lau người, thay đồ

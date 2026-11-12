@@ -10,7 +10,7 @@ interface Props {
   published?: Date;
   modified?: Date;
 }
-const { title, description, image = '/og-default.jpg', noindex = false, type = 'website', published, modified } = Astro.props;
+const { title, description, image = '/og-an-gia.jpg', noindex = false, type = 'website', published, modified } = Astro.props;
 // Thêm tên thương hiệu cuối title nếu trang chưa tự ghi
 const fullTitle = title.includes(site.shortName) ? title : `${title} | ${site.shortName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;

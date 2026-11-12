@@ -31,7 +31,7 @@ faqs:
     a: Có. Việc lắp camera ở khu vực chung được ghi trong hợp đồng để người giúp việc biết trước và đồng ý.
 ---
 
-Giao con cho người khác là quyết định khó nhất với bố mẹ. Vì vậy với dịch vụ chăm bé, chúng tôi **kiểm tra kỹ hơn** các dịch vụ khác: hỏi về kinh nghiệm thực tế, kiểm tra sức khỏe và gọi xác nhận với gia đình cũ.
+Giao con cho người khác là quyết định khó nhất với bố mẹ. Vì vậy với dịch vụ chăm bé, chúng tôi **kiểm tra kỹ hơn** các dịch vụ khác: hỏi về kinh nghiệm chăm trẻ thực tế và gọi xác nhận với gia đình cũ mà người đó từng chăm bé.
 
 ## Gặp trước, làm thử trước
 

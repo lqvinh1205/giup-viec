@@ -85,7 +85,7 @@ import { site, telHref, zaloHref, telHref1 } from '../config/site';
   </div>
 </div>
 
-<!-- Desktop: cụm nút nổi -->
+<!-- Desktop: cụm nút nổi. Nút gọi chỉ hiện số khi màn hình đủ rộng (≥1700px), dưới mức đó thu thành nút tròn để không che sidebar -->
 <div class="fixed right-6 bottom-6 z-50 hidden flex-col items-end gap-3 lg:flex">
   <a href={site.messenger} target="_blank" rel="noopener" data-track="messenger" data-position="float"
      class="grid size-13 place-items-center rounded-full bg-primary text-white shadow-lg transition hover:scale-105" aria-label="Nhắn Messenger">
@@ -95,13 +95,15 @@ import { site, telHref, zaloHref, telHref1 } from '../config/site';
      class="grid size-13 place-items-center rounded-full bg-[#0068ff] text-white shadow-lg transition hover:scale-105" aria-label="Nhắn Zalo">
     <Icon name="zalo" size={26} />
   </a>
-  <a href={telHref} data-track="call" data-position="float"
-     class="flex h-13 items-center gap-2 rounded-full bg-cta pr-5 pl-4 font-semibold text-white no-underline shadow-lg transition hover:bg-cta-hover">
-    <Icon name="phone" size={22} /> {site.hotlineDisplay}
+  <a href={telHref} data-track="call" data-position="float" aria-label={`Gọi hotline 1: ${site.hotlineDisplay}`} title={site.hotlineDisplay}
+     class="relative flex size-13 items-center justify-center gap-2 rounded-full bg-cta font-semibold text-white no-underline shadow-lg transition hover:bg-cta-hover min-[1700px]:w-auto min-[1700px]:pr-5 min-[1700px]:pl-4">
+    <Icon name="phone" size={22} /> <span class="hidden min-[1700px]:inline">{site.hotlineDisplay}</span>
+    <span class="absolute -top-1 -right-1 grid size-5 place-items-center rounded-full bg-white text-xs text-cta shadow min-[1700px]:hidden" aria-hidden="true">1</span>
   </a>
-  <a href={telHref1} data-track="call" data-position="float-2"
-     class="flex h-13 items-center gap-2 rounded-full bg-cta pr-5 pl-4 font-semibold text-white no-underline shadow-lg transition hover:bg-cta-hover">
-    <Icon name="phone" size={22} /> {site.hotlineDisplay1}
+  <a href={telHref1} data-track="call" data-position="float-2" aria-label={`Gọi hotline 2: ${site.hotlineDisplay1}`} title={site.hotlineDisplay1}
+     class="relative flex size-13 items-center justify-center gap-2 rounded-full bg-cta font-semibold text-white no-underline shadow-lg transition hover:bg-cta-hover min-[1700px]:w-auto min-[1700px]:pr-5 min-[1700px]:pl-4">
+    <Icon name="phone" size={22} /> <span class="hidden min-[1700px]:inline">{site.hotlineDisplay1}</span>
+    <span class="absolute -top-1 -right-1 grid size-5 place-items-center rounded-full bg-white text-xs text-cta shadow min-[1700px]:hidden" aria-hidden="true">2</span>
   </a>
 </div>
 

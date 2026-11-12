@@ -11,10 +11,12 @@ const services = defineCollection({
     h1: z.string(),
     summary: z.string(), // 1–2 câu cho card
     icon: z.string(),
+    audience: z.enum(['family', 'business']).default('family'), // business = khách doanh nghiệp (tạp vụ)
     priceFrom: z.number(),
-    priceUnit: z.enum(['tháng', 'giờ', 'ngày', 'buổi']),
+    priceUnit: z.enum(['tháng', 'giờ', 'ngày', 'buổi', 'ca']),
     prices: z.array(z.object({ name: z.string(), price: z.string(), note: z.string().optional() })),
     scope: z.array(z.string()),
+    medicalLimits: z.boolean().default(false), // hiện danh sách việc chuyên môn y tế không đảm nhận
     faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
   }),
 });

@@ -10,14 +10,15 @@ priceFrom: 10000000
 priceUnit: tháng
 prices:
   - name: Ông bà còn tự đi lại được
-    price: Từ 10 triệu/tháng
+    price: 10 – 10,5 triệu/tháng
     note: Kèm việc nhà nhẹ
   - name: Ông bà đi lại khó khăn
-    price: 10 – 11,5 triệu/tháng
+    price: 10,5 – 11,5 triệu/tháng
     note: Hỗ trợ di chuyển, vệ sinh cá nhân
   - name: Cụ nằm một chỗ
     price: Từ 12 triệu/tháng
-    note: Lật người, vệ sinh, cho ăn qua sonde nếu được hướng dẫn
+    note: Lật người, vệ sinh; hỗ trợ cho ăn qua sonde đã đặt sẵn khi được nhân viên y tế hướng dẫn
+medicalLimits: true
 scope:
   - Nấu ăn mềm, đúng chế độ ăn của ông bà
   - Hỗ trợ tắm rửa, thay quần áo, vệ sinh cá nhân
@@ -26,9 +27,9 @@ scope:
   - Dọn dẹp phòng ở của ông bà
 faqs:
   - q: Người chăm có biết chăm người bệnh nặng không?
-    a: Với cụ nằm một chỗ hoặc có bệnh nền, chúng tôi chọn người đã từng chăm trường hợp tương tự. Các thao tác y tế như tiêm hay truyền dịch thuộc về nhân viên y tế, không do người giúp việc làm.
+    a: Với cụ nằm một chỗ hoặc có bệnh nền, chúng tôi chọn người đã từng chăm trường hợp tương tự. Các thao tác y tế như tiêm, truyền dịch, đặt hoặc thay sonde thuộc về nhân viên y tế, người chăm không làm. Với cụ đã được đặt sonde, người chăm chỉ hỗ trợ cho ăn qua sonde sau khi được nhân viên y tế hướng dẫn và gia đình đồng ý.
   - q: Ông bà khó tính thì có đổi người được không?
-    a: Được. Sự hợp tính rất quan trọng nên trong thời gian bảo hành, chúng tôi đổi người miễn phí đến khi ông bà thấy thoải mái.
+    a: Được. Sự hợp tính rất quan trọng nên trong thời gian bảo hành, chúng tôi đổi người miễn phí theo chính sách đổi người. Ngoài thời gian bảo hành, trung tâm vẫn hỗ trợ tìm người phù hợp hơn.
 ---
 
 Chăm sóc người già cần nhiều hơn kỹ năng: cần **sự kiên nhẫn** và **biết lắng nghe**. Chúng tôi ưu tiên giới thiệu người đã chăm ông bà cho gia đình khác và được nhận xét tốt.

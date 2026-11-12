@@ -16,15 +16,15 @@ const perks = [
 const faqs = [
   { q: 'Tôi cần mang theo giấy tờ gì?', a: 'Căn cước công dân bản gốc và giấy xác nhận của địa phương (nếu có).' },
   { q: 'Tôi ở tỉnh xa có đăng ký được không?', a: 'Được. Nhắn Zalo cho trung tâm để được phỏng vấn qua điện thoại trước, sau đó trung tâm hướng dẫn chị lên Hà Nội hoặc đi thẳng đến nhà gia đình.' },
-  { q: 'Mức lương bao nhiêu?', a: 'Từ 7 đến 12 triệu đồng/tháng tùy công việc, được bao ăn ở với người ở lại. Chăm bệnh tại viện tính theo ngày.' },
+  { q: 'Mức lương bao nhiêu?', a: 'Từ 8 đến 14 triệu đồng/tháng tùy công việc, được bao ăn ở với người ở lại. Chăm bệnh tại viện tính theo ngày.' },
 ];
 ---
 <BaseLayout
-  title="Tuyển người giúp việc, chăm bé – Lương 7–12 triệu"
-  description="Tuyển người giúp việc gia đình, chăm bé, chăm người già, chăm bệnh. Lương 7–12 triệu/tháng, bao ăn ở, không thu phí. Nhận người ở mọi tỉnh."
+  title="Tuyển người giúp việc, chăm bé – Lương 8–14 triệu"
+  description="Tuyển người giúp việc gia đình, chăm bé, chăm người già, chăm bệnh. Lương 8–14 triệu/tháng, bao ăn ở, không thu phí. Nhận người ở mọi tỉnh."
   jsonLd={[breadcrumb(crumbs), faqPage(faqs)]}
 >
-  <PageHeader eyebrow="Dành cho người lao động" title="Tìm việc giúp việc nhà, không mất phí" lead="Lương 7–12 triệu/tháng, bao ăn ở. Nhận chị em ở mọi tỉnh thành, có kinh nghiệm hay chưa đều được hướng dẫn." crumbs={crumbs}>
+  <PageHeader eyebrow="Dành cho người lao động" title="Tìm việc giúp việc nhà, không mất phí" lead="Lương 8–14 triệu/tháng, bao ăn ở. Nhận chị em ở mọi tỉnh thành, có kinh nghiệm hay chưa đều được hướng dẫn." crumbs={crumbs}>
     <div class="mt-7 flex flex-col gap-3 sm:flex-row">
       <a href={zaloHref} target="_blank" rel="noopener" data-track="zalo" data-position="recruit" class="btn btn-accent"><Icon name="zalo" size={22} /> Nhắn Zalo đăng ký</a>
       <a href={telHref} data-track="call" data-position="recruit" class="btn btn-ghost"><Icon name="phone" size={20} /> Gọi {site.hotlineDisplay}</a>

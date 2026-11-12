@@ -29,8 +29,8 @@ faqs:
     a: Thông thường 2–4 ngày/tháng, gia đình và người giúp việc thỏa thuận trong hợp đồng. Ngày nghỉ không dùng có thể quy đổi thành tiền.
   - q: Nếu người giúp việc không phù hợp thì sao?
     a: Trong thời gian bảo hành, chúng tôi đổi người miễn phí. Số lần đổi và thời hạn ghi rõ trong hợp đồng.
-  - q: Mức lương đã bao gồm phí dịch vụ chưa?
-    a: Mức lương trên là tiền trả trực tiếp cho người giúp việc. Phí dịch vụ của trung tâm tính một lần khi ký hợp đồng và được báo trước, không phát sinh thêm.
+  - q: Lương và phí dịch vụ tính thế nào?
+    a: Gia đình trả lương trực tiếp cho người giúp việc theo mức và ngày trả đã ghi trong hợp đồng. Phí dịch vụ của trung tâm (cho việc tìm người phù hợp, xác minh hồ sơ và hỗ trợ đổi người trong thời gian bảo hành) được tư vấn rõ và ghi trong hợp đồng trước khi anh chị nhận người.
 ---
 
 Giúp việc ở lại nhà là lựa chọn phổ biến nhất cho các gia đình bận rộn: có người lo việc nhà từ sáng đến tối, cơm nước đúng giờ, nhà cửa gọn gàng mà không phải tự sắp xếp từng ngày.
@@ -43,7 +43,7 @@ Giúp việc ở lại nhà là lựa chọn phổ biến nhất cho các gia đ
 
 ## Người giúp việc của chúng tôi được chọn như thế nào?
 
-Mỗi người đều được **xác minh căn cước công dân**, có xác nhận của địa phương và được gọi điện kiểm tra với ít nhất một gia đình từng thuê. Trước khi đi làm, họ được hướng dẫn về nấu ăn, dùng đồ điện và giữ vệ sinh theo chuẩn của trung tâm.
+Mỗi người đều được **xác minh căn cước công dân** và phỏng vấn trước khi giới thiệu. Với người đã từng đi làm, chúng tôi gọi điện hỏi gia đình cũ về tính cách và cách làm việc. Hồ sơ gửi anh chị ghi rõ kinh nghiệm, để anh chị biết người đó đã làm những việc gì.
 
 ## Chi phí minh bạch
 

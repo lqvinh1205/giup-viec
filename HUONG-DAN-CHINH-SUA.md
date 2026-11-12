@@ -58,16 +58,16 @@ Mỗi file là một trang `/dich-vu/<tên-file>/`. Tên file viết thường, 
 ---
 order: 3                 # thứ tự hiển thị (số nhỏ đứng trước)
 name: Giúp việc chăm bé  # tên ngắn trên thẻ dịch vụ, menu
-title: Người giúp việc chăm bé – Từ 8,5 triệu/tháng   # tiêu đề trên Google, ≤ 60 ký tự
+title: Người chăm bé, trông trẻ tại Hà Nội – Từ 9 triệu/tháng   # tiêu đề trên Google, ≤ 60 ký tự
 description: "Mô tả trên Google, ≤ 155 ký tự"
 h1: Giúp việc chăm bé, trông trẻ tại nhà              # tiêu đề lớn đầu trang
 summary: "1–2 câu ngắn hiện trên thẻ dịch vụ"
 icon: baby               # biểu tượng, chọn trong danh sách dưới
-priceFrom: 8500000       # giá thấp nhất, số liền không dấu chấm
-priceUnit: tháng         # chỉ được: tháng | giờ | ngày | buổi
+priceFrom: 9000000       # giá thấp nhất, số liền không dấu chấm
+priceUnit: tháng         # chỉ được: tháng | giờ | ngày | buổi | ca
 prices:                  # bảng giá chi tiết
   - name: Trông bé từ 1 tuổi
-    price: 8,5 – 9,5 triệu/tháng
+    price: 9 – 9,5 triệu/tháng
     note: Kèm việc nhà nhẹ   # không bắt buộc
 scope:                   # danh sách công việc đảm nhận
   - Tắm, vệ sinh, thay tã cho bé
@@ -79,7 +79,17 @@ faqs:                    # câu hỏi thường gặp (không bắt buộc)
 Nội dung bài viết mô tả dịch vụ (xem mục 5 về cách viết).
 ```
 
-- **Đổi giá:** sửa cả `priceFrom` (giá "từ…" trên thẻ, trang chủ, bảng giá) và `prices` (bảng chi tiết). Nếu giá nằm trong `title`/`description` thì sửa luôn.
+- **Đổi giá:** giá được gõ trực tiếp ở nhiều nơi. Khi đổi giá một dịch vụ, rà **đủ** danh sách dưới đây (tìm nhanh: tìm con số cũ, ví dụ `8,5 triệu`, `8500000`, trong toàn bộ thư mục `src/`):
+
+  | Nơi | Nội dung chứa giá |
+  |---|---|
+  | `src/content/services/<dịch-vụ>.md` | `priceFrom` (giá "từ…" trên thẻ, slider, trang chủ, đầu trang dịch vụ, dữ liệu Google), `prices` (bảng giá chi tiết, cũng hiện ở `/bang-gia/` và landing page), `title` (có "Từ … /tháng"), FAQ nếu có nhắc giá |
+  | `src/pages/bang-gia.astro` | `description` (giá ở lại nhà, theo giờ), FAQ |
+  | `src/config/campaigns.ts` | `sub` của landing page (giúp việc gia đình: "từ … triệu/tháng") |
+  | `src/content/blog/bang-gia-thue-giup-viec-2026.md` | Bảng "Mức lương theo từng loại dịch vụ", mục "Những yếu tố làm giá cao hơn" (so sánh theo số người, giá Tết) |
+  | `src/pages/tuyen-dung.astro` | Lương người lao động "8–14 triệu" (= mức thấp nhất và cao nhất của các dịch vụ theo tháng cho gia đình) ở `title`, `description`, lead, FAQ |
+
+  Quy ước: `priceFrom` = mức thấp nhất trong bảng `prices`; các khung giá trong một dịch vụ nối tiếp nhau, không chồng lên nhau.
 - **Thêm dịch vụ:** copy một file có sẵn, đổi tên file, sửa nội dung. Trang tự xuất hiện ở trang chủ, trang Dịch vụ, Bảng giá, chân trang.
 - **Ẩn/xóa dịch vụ:** xóa file. Nếu trang đã có lượt truy cập từ Google, thêm dòng chuyển hướng vào `public/_redirects` (mục 8). Kiểm tra `src/config/campaigns.ts` và trường `service:` của các bài blog không còn trỏ tới dịch vụ đã xóa.
 - **Biểu tượng (`icon`) có sẵn:** xem tên trong `src/components/Icon.astro`: `home`, `clock`, `baby`, `elder`, `care`, `broom`, `building`, `lantern`, `shield`, `doc`…
@@ -150,7 +160,7 @@ Toàn bộ màu nằm trong khối `@theme`. Đổi mã màu ở đây là cả 
 
 Lưu ý khi đổi màu:
 - Chữ trắng trên nút phải đủ tương phản (kiểm tra tại webaim.org/resources/contrastchecker, cần ≥ 4.5).
-- Logo, favicon và màu nền slide minh họa có mã màu viết trực tiếp, cần sửa cùng lúc: `src/components/Logo.astro`, `src/components/HeroSlider.astro` (dòng `tints`, chỉ dùng khi thiếu ảnh), `public/favicon.svg`, dòng `theme-color` trong `src/layouts/BaseLayout.astro`. Ảnh `public/apple-touch-icon.png` và `public/og-default.jpg` phải xuất lại bằng phần mềm thiết kế.
+- Logo, favicon và màu nền slide minh họa có mã màu viết trực tiếp, cần sửa cùng lúc: `src/components/Logo.astro`, `src/components/HeroSlider.astro` (dòng `tints`, chỉ dùng khi thiếu ảnh), `public/favicon.svg`, dòng `theme-color` trong `src/layouts/BaseLayout.astro`. Ảnh `public/apple-touch-icon.png` và `public/og-an-gia.jpg` (ảnh hiện khi chia sẻ link qua Zalo/Facebook, 1200×630) phải xuất lại bằng phần mềm thiết kế. Khi thay ảnh này, đặt **tên file mới** và sửa tên trong `src/components/Seo.astro`, `src/lib/schema.ts` để Zalo/Facebook không dùng ảnh cũ đã lưu.
 
 Kiểu chữ: toàn site dùng **Be Vietnam Pro** (thiết kế riêng cho tiếng Việt). Tiêu đề đậm 700, chữ thường 400.
 

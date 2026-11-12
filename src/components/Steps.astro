@@ -1,11 +1,13 @@
 ---
 import { site } from '../config/site';
-const steps = [
+interface Props { items?: { t: string; d: string }[] }
+const familySteps = [
   { t: 'Gọi hoặc nhắn Zalo', d: `Kể nhu cầu: mấy người trong nhà, làm gì, giờ giấc, mức lương dự kiến. Chúng tôi phản hồi trong ${site.responseTime}.` },
-  { t: 'Nhận 2–3 hồ sơ phù hợp', d: 'Hồ sơ đã xác minh CCCD, xác nhận địa phương, có lịch sử làm việc. Anh chị xem trước qua Zalo.' },
+  { t: 'Nhận 2–3 hồ sơ phù hợp', d: 'Hồ sơ đã xác minh CCCD, ghi rõ kinh nghiệm làm việc. Anh chị xem trước qua Zalo.' },
   { t: 'Gặp mặt, làm thử', d: 'Phỏng vấn trực tiếp hoặc video. Người giúp việc làm thử, không phù hợp thì đổi.' },
   { t: 'Ký hợp đồng ba bên', d: 'Ghi rõ lương, ngày nghỉ, phạm vi công việc và thời hạn bảo hành đổi người.' },
 ];
+const { items: steps = familySteps } = Astro.props;
 ---
 <ol class="grid gap-x-10 gap-y-10 sm:grid-cols-2">
   {steps.map((s, i) => (

@@ -1,9 +1,8 @@
 import { getCollection } from 'astro:content';
 
 export async function getReviews(service?: string) {
-  // todo: filter out sample reviews in production
-  // const all = await getCollection('reviews', ({ data }) => import.meta.env.DEV || !data.sample);
-  const all = await getCollection('reviews');
+  // Đánh giá mẫu (sample: true) chỉ hiện khi chạy dev, tự ẩn khi build production
+  const all = await getCollection('reviews', ({ data }) => import.meta.env.DEV || !data.sample);
   return all
     .map((r) => r.data)
     .filter((r) => !service || r.service === service)
