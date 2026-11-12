@@ -3,6 +3,7 @@ title: Hợp đồng thuê người giúp việc cần có những gì?
 description: "Những điều khoản bắt buộc nên có trong hợp đồng thuê người giúp việc gia đình để tránh tranh chấp: lương, ngày nghỉ, công việc, bảo hành đổi người."
 pubDate: 2026-09-10
 tags: [hợp đồng, kinh nghiệm]
+service: giup-viec-o-lai-nha
 ---
 
 Nhiều gia đình thuê người giúp việc chỉ bằng thỏa thuận miệng, đến khi có mâu thuẫn mới thấy khó giải quyết. Một bản hợp đồng rõ ràng bảo vệ **cả gia đình lẫn người giúp việc**.

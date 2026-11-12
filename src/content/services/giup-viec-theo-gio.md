@@ -1,7 +1,7 @@
 ---
 order: 2
 name: Giúp việc theo giờ
-title: Giúp việc theo giờ tại Hà Nội – Từ 70.000đ/giờ
+title: Giúp việc theo giờ Hà Nội – Từ 70.000đ/giờ
 description: Giúp việc theo giờ dọn dẹp định kỳ hoặc theo buổi. Linh hoạt lịch, tối thiểu 2 giờ/buổi, người làm cố định cho khách đặt dài hạn.
 h1: Giúp việc theo giờ, dọn dẹp theo buổi
 summary: Dọn dẹp định kỳ 1–3 buổi/tuần hoặc theo buổi lẻ. Không cần ở lại, linh hoạt giờ giấc.

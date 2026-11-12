@@ -10,11 +10,11 @@ const all = await getPosts();
 const crumbs = [{ name: 'Cẩm nang', href: '/cam-nang/' }];
 ---
 <BaseLayout
-  title="Cẩm nang thuê người giúp việc – Kinh nghiệm, giá, hợp đồng"
+  title="Cẩm nang thuê giúp việc – Kinh nghiệm, giá, hợp đồng"
   description="Kinh nghiệm thuê người giúp việc gia đình: bảng giá, câu hỏi phỏng vấn, mẫu hợp đồng, cách chăm bé và chăm người già an toàn."
   jsonLd={[breadcrumb(crumbs)]}
 >
-  <PageHeader title="Cẩm nang thuê giúp việc" lead="Kinh nghiệm thực tế từ hàng nghìn lần kết nối gia đình và người giúp việc." crumbs={crumbs} />
+  <PageHeader title="Cẩm nang thuê giúp việc" lead="Kinh nghiệm thực tế khi thuê người giúp việc, chăm bé, chăm người già." crumbs={crumbs} />
   <section class="wrap py-14">
     <PostList posts={all.slice(0, PAGE_SIZE)} page={1} lastPage={Math.ceil(all.length / PAGE_SIZE)} />
   </section>

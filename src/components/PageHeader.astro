@@ -1,9 +1,12 @@
 ---
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Breadcrumb from './Breadcrumb.astro';
 interface Props { title: string; lead?: string; crumbs: { name: string; href: string }[]; eyebrow?: string; image?: ImageMetadata }
 const { title, lead, crumbs, eyebrow, image } = Astro.props;
+// Ảnh chỉ hiện từ màn hình lg: dùng <source media> để mobile không tải ảnh bị ẩn
+const photo = image && (await getImage({ src: image, widths: [480, 720, 960] }));
+const blank = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 ---
 <section class="border-b border-line bg-paper-deep">
   <div class:list={['wrap grid items-center gap-8 py-10 sm:py-14', image && 'lg:grid-cols-[1.25fr_1fr] lg:gap-14']}>
@@ -14,9 +17,12 @@ const { title, lead, crumbs, eyebrow, image } = Astro.props;
       {lead && <p class="mt-4 max-w-2xl text-lg text-ink-soft">{lead}</p>}
       <slot />
     </div>
-    {image && (
-      <Image src={image} alt="" widths={[480, 720, 960]} sizes="(min-width:1024px) 440px, 92vw" loading="eager"
-        class="hidden aspect-[4/3] w-full rounded-3xl object-cover shadow-lg lg:block" />
+    {photo && (
+      <picture>
+        <source media="(min-width:1024px)" srcset={photo.srcSet.attribute} sizes="440px" type="image/webp" />
+        <img src={blank} alt="" width={photo.attributes.width} height={photo.attributes.height} fetchpriority="high" decoding="async"
+          class="hidden aspect-[4/3] w-full rounded-3xl object-cover shadow-lg lg:block" />
+      </picture>
     )}
   </div>
 </section>

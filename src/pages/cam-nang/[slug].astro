@@ -20,7 +20,7 @@ const related = d.service ? await getEntry('services', d.service) : undefined;
 const more = (await getPosts()).filter((p) => p.id !== entry.id).slice(0, 3);
 const toc = headings.filter((h) => h.depth === 2);
 ---
-<BaseLayout title={d.title} description={d.description} type="article" jsonLd={[breadcrumb(crumbs), article(d, path)]}>
+<BaseLayout title={d.title} description={d.description} type="article" published={d.pubDate} modified={d.updatedDate ?? d.pubDate} jsonLd={[breadcrumb(crumbs), article(d, path)]}>
   <PageHeader title={d.title} crumbs={crumbs}>
     <p class="mt-4 text-sm text-ink-soft">
       Đăng ngày <time datetime={d.pubDate.toISOString()}>{d.pubDate.toLocaleDateString('vi-VN')}</time>

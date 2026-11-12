@@ -7,7 +7,6 @@ import Footer from '../components/Footer.astro';
 import ContactDock from '../components/ContactDock.astro';
 import Analytics from '../components/Analytics.astro';
 import { localBusiness } from '../lib/schema';
-import { getReviews } from '../lib/reviews';
 
 interface Props {
   title: string;
@@ -15,14 +14,12 @@ interface Props {
   image?: string;
   noindex?: boolean;
   type?: 'website' | 'article';
+  published?: Date;
+  modified?: Date;
   jsonLd?: object[];
   minimal?: boolean; // landing page Ads: header rút gọn, không footer menu
 }
 const { jsonLd = [], minimal = false, ...seo } = Astro.props;
-const reviews = await getReviews();
-const rating = reviews.length
-  ? { value: +(reviews.reduce((t, r) => t + r.rating, 0) / reviews.length).toFixed(1), count: reviews.length }
-  : undefined;
 ---
 <!doctype html>
 <html lang="vi">
@@ -34,7 +31,7 @@ const rating = reviews.length
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <Seo {...seo} />
-    <JsonLd data={[localBusiness(rating), ...jsonLd]} />
+    <JsonLd data={[localBusiness(), ...jsonLd]} />
     <slot name="head" />
   </head>
   <body>

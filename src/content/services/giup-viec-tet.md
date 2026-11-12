@@ -1,7 +1,7 @@
 ---
 order: 7
 name: Giúp việc dịp Tết
-title: Giúp việc Tết, thuê người giúp việc ngày Tết
+title: Thuê giúp việc dịp Tết – Từ 500.000đ/ngày
 description: Thuê người giúp việc dịp Tết khi người giúp việc cũ về quê. Nhận đăng ký sớm từ tháng 11 âm lịch, có gói theo ngày và trọn Tết.
 h1: Giúp việc dịp Tết Nguyên đán
 summary: Thay người giúp việc về quê ăn Tết. Đăng ký sớm để giữ người, có gói theo ngày và trọn Tết.

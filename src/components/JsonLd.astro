@@ -1,5 +1,7 @@
 ---
 interface Props { data: object | object[] }
 const items = [Astro.props.data].flat();
+// Escape "<" để chuỗi như "</script>" trong dữ liệu không làm vỡ thẻ script
+const json = (d: object) => JSON.stringify(d).replace(/</g, '\\u003c');
 ---
-{items.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+{items.map((d) => <script type="application/ld+json" set:html={json(d)} />)}

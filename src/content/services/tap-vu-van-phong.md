@@ -1,7 +1,7 @@
 ---
 order: 6
 name: Tạp vụ văn phòng
-title: Tạp vụ văn phòng, công ty – Theo tháng hoặc theo giờ
+title: Tạp vụ văn phòng Hà Nội – Từ 6,5 triệu/tháng
 description: Cung cấp nhân viên tạp vụ văn phòng, pha trà, dọn dẹp, vệ sinh công ty theo ca. Có xuất hóa đơn, thay người khi nghỉ phép.
 h1: Nhân viên tạp vụ văn phòng
 summary: Dọn dẹp, pha trà nước, vệ sinh văn phòng theo ca. Có hóa đơn, có người thay khi nghỉ.

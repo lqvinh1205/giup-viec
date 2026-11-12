@@ -7,15 +7,19 @@ interface Props {
   image?: string;
   noindex?: boolean;
   type?: 'website' | 'article';
+  published?: Date;
+  modified?: Date;
 }
-const { title, description, image = '/og-default.jpg', noindex = false, type = 'website' } = Astro.props;
+const { title, description, image = '/og-default.jpg', noindex = false, type = 'website', published, modified } = Astro.props;
+// Thêm tên thương hiệu cuối title nếu trang chưa tự ghi
+const fullTitle = title.includes(site.shortName) ? title : `${title} | ${site.shortName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;
 ---
-<title>{title}</title>
+<title>{fullTitle}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={canonical} />
-<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+{!noindex && <link rel="canonical" href={canonical} />}
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
 
 <meta property="og:type" content={type} />
 <meta property="og:locale" content="vi_VN" />
@@ -26,4 +30,7 @@ const ogImage = new URL(image, Astro.site).href;
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={site.name} />
+{published && <meta property="article:published_time" content={published.toISOString()} />}
+{modified && <meta property="article:modified_time" content={modified.toISOString()} />}
 <meta name="twitter:card" content="summary_large_image" />

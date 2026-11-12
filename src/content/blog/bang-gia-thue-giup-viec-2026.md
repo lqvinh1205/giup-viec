@@ -2,6 +2,7 @@
 title: Bảng giá thuê người giúp việc 2026 – Chi phí thực tế từng loại
 description: "Tổng hợp mức lương người giúp việc 2026 theo từng loại: ở lại nhà, theo giờ, chăm bé, chăm người già, chăm bệnh. Kèm các khoản phí cần biết."
 pubDate: 2026-10-20
+updatedDate: 2026-11-12
 tags: [bảng giá, kinh nghiệm]
 service: giup-viec-o-lai-nha
 ---
@@ -12,11 +13,11 @@ Lương người giúp việc thay đổi theo từng năm, theo mùa và theo k
 
 | Loại dịch vụ | Mức phổ biến |
 |---|---|
-| Giúp việc ở lại nhà | 7,5 – 10 triệu/tháng |
-| Giúp việc theo giờ | 70.000 – 90.000đ/giờ |
-| Chăm bé | 8,5 – 11 triệu/tháng |
-| Chăm người già | 9 – 12 triệu/tháng |
-| Chăm người bệnh tại viện | 450.000 – 800.000đ/ngày |
+| [Giúp việc ở lại nhà](/dich-vu/giup-viec-o-lai-nha/) | 8 – 10 triệu/tháng |
+| [Giúp việc theo giờ](/dich-vu/giup-viec-theo-gio/) | 70.000 – 90.000đ/giờ |
+| [Chăm bé](/dich-vu/cham-be/) | 9 – 11 triệu/tháng |
+| [Chăm người già](/dich-vu/cham-nguoi-gia/) | 10 – 12 triệu/tháng |
+| [Chăm người bệnh tại viện](/dich-vu/cham-nguoi-benh/) | 450.000 – 800.000đ/ngày |
 
 ## Những yếu tố làm giá cao hơn
 

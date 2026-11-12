@@ -1,7 +1,7 @@
 ---
 order: 1
 name: Giúp việc ở lại nhà
-title: Giúp việc gia đình ở lại nhà – Giá từ 7,5 triệu/tháng
+title: Giúp việc ở lại nhà Hà Nội – Từ 8 triệu/tháng
 description: Người giúp việc ở lại nhà dọn dẹp, nấu ăn, giặt giũ. Hồ sơ xác minh, làm thử trước khi nhận, đổi người miễn phí trong thời gian bảo hành.
 h1: Giúp việc gia đình ở lại nhà
 summary: Dọn dẹp, nấu ăn, giặt là, đi chợ. Ở cùng gia đình, có ngày nghỉ cố định trong tháng.
@@ -10,7 +10,7 @@ priceFrom: 8000000
 priceUnit: tháng
 prices:
   - name: Gia đình 2–4 người, nhà ≤ 100m²
-    price: 7,5 – 8,5 triệu/tháng
+    price: 8 – 8,5 triệu/tháng
     note: Dọn dẹp, nấu 2 bữa, giặt là
   - name: Gia đình 5–6 người hoặc nhà nhiều tầng
     price: 8,5 – 10 triệu/tháng

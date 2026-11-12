@@ -5,7 +5,7 @@ export const campaigns = [
     slug: 'giup-viec-gia-dinh',
     service: 'giup-viec-o-lai-nha',
     headline: 'Thuê người giúp việc gia đình, có người trong 1–3 ngày',
-    sub: 'Hồ sơ xác minh, làm thử trước khi nhận, đổi người miễn phí. Giá tham khảo từ 7,5 triệu/tháng, thỏa thuận theo nhu cầu.',
+    sub: 'Hồ sơ xác minh, làm thử trước khi nhận, đổi người miễn phí. Giá tham khảo từ 8 triệu/tháng, thỏa thuận theo nhu cầu.',
   },
   {
     slug: 'cham-be',

@@ -16,7 +16,8 @@ const crumbs = [{ name: 'Dịch vụ', href: '/dich-vu/' }];
   jsonLd={[breadcrumb(crumbs)]}
 >
   <PageHeader title="Dịch vụ giúp việc" lead="Mỗi dịch vụ có người được chọn riêng theo kinh nghiệm, kèm khung giá tham khảo và quy trình làm thử." crumbs={crumbs} />
-  <section class="wrap py-14">
+  <section class="wrap py-14" aria-labelledby="ds">
+    <h2 id="ds" class="sr-only">Danh sách dịch vụ</h2>
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((s, i) => <ServiceCard slug={s.id} index={i} {...s.data} />)}
     </div>

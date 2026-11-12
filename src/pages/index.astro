@@ -42,21 +42,21 @@ const faqs = [
 ];
 ---
 <BaseLayout
-  title={`Trung tâm giúp việc nhà Hà Nội uy tín – ${site.shortName}`}
+  title={`Dịch vụ giúp việc nhà uy tín tại Hà Nội | ${site.shortName}`}
   description={site.description}
   jsonLd={[faqPage(faqs)]}
 >
   <!-- HERO -->
   <section class="wrap grid items-center gap-14 pt-8 pb-16 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:pt-16 lg:pb-24">
     <div>
-      <p class="eyebrow">Trung tâm giúp việc · Hà Nội</p>
-      <h1 class="mt-4 text-[2.4rem] sm:text-5xl lg:text-[3.6rem]">
+      <h1 class="eyebrow leading-normal tracking-normal">Dịch vụ giúp việc nhà uy tín tại Hà Nội</h1>
+      <p class="mt-4 font-display text-[2.4rem] leading-[1.25] tracking-[-0.02em] text-balance text-primary sm:text-5xl lg:text-[3.6rem]">
         Người giúp việc tận tâm
         <span class="hero-rotator mt-1 text-primary-soft" aria-hidden="true">
           {rotating.map((t) => <span class="whitespace-nowrap">{t}</span>)}
         </span>
         <span class="sr-only">{rotating.join(', ')}</span>
-      </h1>
+      </p>
       <p class="mt-5 max-w-xl text-lg text-ink-soft">
         Giúp việc ở lại nhà, theo giờ, chăm bé, chăm ông bà và người bệnh. Hồ sơ xác minh, làm thử trước khi nhận, đổi người miễn phí.
       </p>

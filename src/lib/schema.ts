@@ -1,12 +1,12 @@
-import { site, SITE_URL, zaloHref } from '../config/site';
+import { site, SITE_URL } from '../config/site';
 
 const abs = (path: string) => new URL(path, SITE_URL).href;
 const orgId = `${SITE_URL}/#business`;
 
-export function localBusiness(rating?: { value: number; count: number }) {
+export function localBusiness() {
   return {
     '@context': 'https://schema.org',
-    '@type': 'HomeAndConstructionBusiness',
+    '@type': 'LocalBusiness',
     '@id': orgId,
     name: site.name,
     description: site.description,
@@ -14,8 +14,7 @@ export function localBusiness(rating?: { value: number; count: number }) {
     telephone: `+84${site.hotline.replace(/^0/, '')}`,
     email: site.email,
     image: abs('/og-default.jpg'),
-    logo: abs('/favicon.svg'),
-    priceRange: '50.000đ – 12.000.000đ',
+    logo: abs('/apple-touch-icon.png'),
     foundingDate: String(site.foundingYear),
     address: {
       '@type': 'PostalAddress',
@@ -33,10 +32,7 @@ export function localBusiness(rating?: { value: number; count: number }) {
       opens: site.hours.opens,
       closes: site.hours.closes,
     },
-    sameAs: [site.fanpage, zaloHref],
-    ...(rating && rating.count > 0
-      ? { aggregateRating: { '@type': 'AggregateRating', ratingValue: rating.value, reviewCount: rating.count } }
-      : {}),
+    sameAs: [site.fanpage],
   };
 }
 
@@ -45,6 +41,7 @@ export function service(s: { name: string; description: string; priceFrom: numbe
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: s.name,
+    serviceType: s.name,
     description: s.description,
     url: abs(path),
     provider: { '@id': orgId },

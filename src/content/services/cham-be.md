@@ -1,7 +1,7 @@
 ---
 order: 3
 name: Giúp việc chăm bé
-title: Người giúp việc chăm bé, trông trẻ – Từ 8,5 triệu/tháng
+title: Người chăm bé, trông trẻ tại Hà Nội – Từ 9 triệu/tháng
 description: "Người chăm bé có kinh nghiệm chăm trẻ sơ sinh và trẻ nhỏ: tắm, cho ăn, ru ngủ, chơi cùng bé. Được kiểm tra kinh nghiệm thực tế trước khi giới thiệu."
 h1: Giúp việc chăm bé, trông trẻ tại nhà
 summary: "Chăm trẻ sơ sinh và trẻ nhỏ: tắm, pha sữa, nấu ăn dặm, ru ngủ. Người có con, có kinh nghiệm thực tế."
@@ -10,7 +10,7 @@ priceFrom: 9000000
 priceUnit: tháng
 prices:
   - name: Trông bé từ 1 tuổi trở lên
-    price: 8,5 – 9,5 triệu/tháng
+    price: 9 – 9,5 triệu/tháng
     note: Kèm việc nhà nhẹ
   - name: Chăm trẻ sơ sinh (0–12 tháng)
     price: 9,5 – 11 triệu/tháng

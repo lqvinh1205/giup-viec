@@ -1,7 +1,7 @@
 ---
 order: 4
 name: Chăm sóc người già
-title: Người chăm sóc người già tại nhà – Từ 9 triệu/tháng
+title: Chăm sóc người già tại nhà Hà Nội – Từ 10 triệu/tháng
 description: "Người chăm sóc ông bà tại nhà kiên nhẫn, chu đáo: nấu ăn, vệ sinh, đi dạo, nhắc uống thuốc. Có người chăm cụ yếu, nằm một chỗ."
 h1: Người chăm sóc người già tại nhà
 summary: Nấu ăn, vệ sinh cá nhân, đưa đi dạo, nhắc uống thuốc. Kiên nhẫn, chu đáo với ông bà.
@@ -10,7 +10,7 @@ priceFrom: 10000000
 priceUnit: tháng
 prices:
   - name: Ông bà còn tự đi lại được
-    price: 9 – 10 triệu/tháng
+    price: Từ 10 triệu/tháng
     note: Kèm việc nhà nhẹ
   - name: Ông bà đi lại khó khăn
     price: 10 – 11,5 triệu/tháng
