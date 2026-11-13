@@ -114,6 +114,7 @@ service: giup-viec-o-lai-nha # (không bắt buộc) tên file dịch vụ liên
 ---
 ```
 
+- Quy tắc viết bài (giọng văn, giá, cam kết, pháp luật, checklist): xem `HUONG-DAN-VIET-BAI.md`.
 - Bài mới nhất tự lên đầu trang Cẩm nang và 3 bài mới nhất hiện ở trang chủ.
 - **Không đổi tên file** của bài đã đăng (sẽ mất link trên Google). Nếu bắt buộc đổi, thêm chuyển hướng (mục 8).
 
