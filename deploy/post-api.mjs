@@ -14,6 +14,12 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BLOG_DIR = path.join(ROOT, 'src/content/blog');
 const GUIDE = path.join(ROOT, 'HUONG-DAN-VIET-BAI.md');
 const MAX_BYTES = 1024 * 1024;
+
+// Đọc .env ở thư mục gốc dự án nếu có (biến đã đặt sẵn trong môi trường được ưu tiên)
+try {
+  process.loadEnvFile(path.join(ROOT, '.env'));
+} catch {}
+
 const { POST_API_PASSWORD: PASSWORD, WEB_ROOT, PORT = '8787' } = process.env;
 
 if (!PASSWORD || !WEB_ROOT) {
