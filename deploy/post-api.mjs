@@ -1,4 +1,5 @@
-// API nhận file .md, ghi vào src/content/blog/, build lại site rồi copy dist/ ra WEB_ROOT.
+// API nhận file .md, ghi vào src/content/blog/ rồi build lại site (nginx phục vụ thẳng dist/).
+// Có đặt WEB_ROOT thì copy dist/ sang đó sau khi build.
 // GET /guide trả về HUONG-DAN-VIET-BAI.md để AI đọc trước khi viết bài.
 // Chạy sau nginx (HTTPS), xem deploy/README.md.
 import http from 'node:http';
@@ -22,9 +23,19 @@ try {
 
 const { POST_API_PASSWORD: PASSWORD, WEB_ROOT, PORT = '8787' } = process.env;
 
-if (!PASSWORD || !WEB_ROOT) {
-  console.error('Cần đặt POST_API_PASSWORD và WEB_ROOT');
+if (!PASSWORD) {
+  console.error('Cần đặt POST_API_PASSWORD trong .env');
   process.exit(1);
+}
+
+// rsync --delete vào WEB_ROOT: nếu WEB_ROOT trùng hoặc chồng lên thư mục code thì sẽ xóa mất code
+if (WEB_ROOT) {
+  const webRoot = path.resolve(WEB_ROOT);
+  const overlaps = (a, b) => a === b || a.startsWith(b + path.sep);
+  if (overlaps(webRoot, ROOT) || overlaps(ROOT, webRoot)) {
+    console.error(`WEB_ROOT (${webRoot}) không được trùng, chứa hoặc nằm trong thư mục code (${ROOT}). Bỏ dòng WEB_ROOT trong .env nếu nginx phục vụ thẳng dist/.`);
+    process.exit(1);
+  }
 }
 
 const sha = (s) => createHash('sha256').update(s).digest();
@@ -50,7 +61,7 @@ async function publish(slug, content) {
     else await writeFile(file, old);
     throw err;
   }
-  await run('rsync', ['-a', '--delete', 'dist/', `${WEB_ROOT}/`], { cwd: ROOT });
+  if (WEB_ROOT) await run('rsync', ['-a', '--delete', 'dist/', `${WEB_ROOT}/`], { cwd: ROOT });
 }
 
 http

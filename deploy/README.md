@@ -1,6 +1,6 @@
 # API đăng bài cẩm nang
 
-Gửi 1 file `.md` → API ghi vào `src/content/blog/<slug>.md` → `npm run build` → copy `dist/` ra thư mục web.
+Gửi 1 file `.md` → API ghi vào `src/content/blog/<slug>.md` → `npm run build` → nginx phục vụ thẳng `dist/`.
 Build lỗi (frontmatter sai…) thì file được trả về như cũ, site đang chạy không bị ảnh hưởng.
 
 ## Đọc hướng dẫn viết bài
@@ -25,83 +25,85 @@ curl -X PUT https://<domain>/api/posts/ten-bai-viet \
 
 ## Cài trên VPS
 
-Các lệnh dưới đây chạy trên VPS. Thay `/srv/giup-viec` bằng thư mục code thật, `deploy` bằng user sở hữu thư mục đó.
+Code đặt tại `/var/www/html/giup-viec`, chạy bằng root, Node cài qua nvm. Các lệnh dưới chạy trên VPS.
 
-1. **Code và Node.** Cần Node 20.3+ hoặc 22+ (kiểm tra bằng `node -v`), và `rsync`.
+1. **Code và Node.** Cần Node 20.12+ (`node -v`).
 
    ```bash
-   cd /srv/giup-viec
+   cd /var/www/html/giup-viec
    git pull
    npm ci
    npm run build        # phải chạy thành công trước khi làm tiếp
    ```
 
-2. **Thư mục web.** API copy `dist/` ra đây sau mỗi lần build. Không dùng chính `dist/`, vì trong lúc build `dist/` bị xóa và site sẽ lỗi.
+2. **Mật khẩu.** Nên dài ≥ 16 ký tự (API không giới hạn số lần thử sai), không chứa dấu `#`.
 
    ```bash
-   sudo mkdir -p /var/www/giup-viec
-   sudo chown deploy: /var/www/giup-viec
-   rsync -a --delete dist/ /var/www/giup-viec/
+   cp .env.example .env        # nếu chưa có .env
+   openssl rand -base64 24 | tr -d '#/+='   # tạo mật khẩu
+   nano .env                   # POST_API_PASSWORD=<mật khẩu>
+   chmod 600 .env
    ```
 
-3. **Mật khẩu.** Nên dài ≥ 16 ký tự: API không giới hạn số lần thử sai. File này chỉ root đọc được.
+   **Không** đặt `WEB_ROOT` trong `.env`: nginx phục vụ thẳng `dist/`. (`WEB_ROOT` chỉ dùng khi muốn copy `dist/` sang một thư mục web riêng, nằm ngoài thư mục code.)
+
+3. **Service** (chạy nền, tự khởi động lại). Node cài qua nvm nên phải ghi đường dẫn đầy đủ và `PATH` (để API gọi được `npm`). Đổi bản Node thì sửa 2 dòng này.
 
    ```bash
-   sudo tee /etc/giup-viec-post-api.env >/dev/null <<'ENV'
-   POST_API_PASSWORD=<MẬT_KHẨU>
-   WEB_ROOT=/var/www/giup-viec
-   ENV
-   sudo chmod 600 /etc/giup-viec-post-api.env
-   ```
-
-4. **Chạy API như một service** (tự khởi động lại khi lỗi hoặc khi VPS khởi động lại). Tạo file `/etc/systemd/system/post-api.service`:
-
-   ```ini
+   sudo tee /etc/systemd/system/post-api.service >/dev/null <<'UNIT'
    [Unit]
    Description=giup-viec post API
    After=network.target
 
    [Service]
-   User=deploy
-   WorkingDirectory=/srv/giup-viec
-   EnvironmentFile=/etc/giup-viec-post-api.env
-   ExecStart=/usr/bin/env node deploy/post-api.mjs
+   User=root
+   WorkingDirectory=/var/www/html/giup-viec
+   Environment=PATH=/root/.nvm/versions/node/v22.23.4/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+   ExecStart=/root/.nvm/versions/node/v22.23.4/bin/node deploy/post-api.mjs
    Restart=on-failure
 
    [Install]
    WantedBy=multi-user.target
-   ```
+   UNIT
 
-   ```bash
    sudo systemctl daemon-reload
    sudo systemctl enable --now post-api
-   systemctl status post-api          # phải thấy "active (running)"
-   journalctl -u post-api -f          # xem log khi cần
+   curl -i http://127.0.0.1:8787/guide      # 401 Sai mật khẩu
+   journalctl -u post-api -n 30             # xem log khi lỗi
    ```
 
-   Node cài qua nvm thì `/usr/bin/env node` không tìm thấy: thay bằng đường dẫn đầy đủ lấy từ `which node`.
-
-5. **nginx.** Trong server block **HTTPS** của site: đổi `root` thành `/var/www/giup-viec` và thêm:
+4. **nginx – khối HTTPS của giupviecangia.com** (`grep -rl giupviecangia /etc/nginx/sites-enabled/`). Giữ `root /var/www/html/giup-viec/dist;`, đổi `try_files` thành `=404` và thêm:
 
    ```nginx
+   error_page 404 /404.html;
+
    location /api/ {
        proxy_pass http://127.0.0.1:8787/;
        proxy_read_timeout 300s;
        client_max_body_size 1m;
    }
+
+   location / {
+       try_files $uri $uri/ =404;
+   }
+   ```
+
+5. **nginx – khối mặc định** (`listen 80 default_server`, `root /var/www/html`). Khối này phục vụ cả thư mục code, nên phải chặn, nếu không ai cũng tải được `.env`, `.git`:
+
+   ```nginx
+   location ^~ /giup-viec/ { return 404; }
+   location ~ /\. { deny all; }
    ```
 
    ```bash
    sudo nginx -t && sudo systemctl reload nginx
-   ```
-
-6. **Kiểm tra.**
-
-   ```bash
-   curl -i https://<domain>/api/guide                               # 401 Sai mật khẩu
-   curl -i https://<domain>/api/guide -H "X-Password: <MẬT_KHẨU>"   # 200 + nội dung hướng dẫn
+   curl -s -o /dev/null -w "%{http_code}\n" -H "Host: abc.invalid" http://127.0.0.1/giup-viec/.env   # 404
+   curl -i https://giupviecangia.com/api/guide                                                       # 401
    ```
 
 API chỉ lắng nghe `127.0.0.1`, nên phải đi qua nginx HTTPS (dữ liệu và mật khẩu được mã hoá trên đường truyền).
 
-**Lưu ý:** bài đăng qua API chỉ nằm trên VPS, không có trong git. Khi `git pull` code mới, các bài này vẫn giữ nguyên, nhưng không được xóa thư mục code để clone lại. Đổi mật khẩu: sửa file ở bước 3 rồi `sudo systemctl restart post-api`.
+**Lưu ý**
+- Mỗi lần đăng bài, `dist/` bị xóa và tạo lại trong khoảng 2 giây; người vào đúng lúc đó gặp 404. Build lỗi thì `dist/` giữ nguyên.
+- Bài đăng qua API chỉ nằm trên VPS, không có trong git. `git pull` vẫn giữ các bài này, nhưng không được xóa thư mục code để clone lại.
+- Đổi mật khẩu: sửa `.env` rồi `sudo systemctl restart post-api`.
