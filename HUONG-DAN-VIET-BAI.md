@@ -12,7 +12,7 @@ Các quy tắc dưới đây gom từ ba nguồn:
 
 ## 1. Quy trình
 
-1. **Chọn chủ đề.** Mỗi bài trả lời **một** câu hỏi thật mà khách hay hỏi. Kiểm tra trùng với bài đã có và xem các chủ đề gợi ý ở mục 9. Chủ đề đã có bài thì sửa bài cũ, không viết bài mới.
+1. **Chọn chủ đề.** Mỗi bài trả lời **một** câu hỏi thật mà khách hay hỏi. Lấy chủ đề ở mục 9.1. Hết chủ đề thì tự tìm theo mục 9.2. Luôn kiểm tra trùng với bài đã có. Chủ đề đã có bài thì sửa bài cũ, không viết bài mới.
 2. **Viết** theo mẫu ở mục 2.
 3. **Kiểm tra** theo **mục 10**. Bước này bắt buộc: chưa đạt hết thì không gửi.
 4. **Đăng** bằng một trong hai cách:
@@ -301,16 +301,103 @@ Danh sách đầy đủ và mới nhất nằm ở trang `/cam-nang/` trên web 
 | `kinh-nghiem-thue-nguoi-cham-tre-so-sinh` | Thuê người chăm sơ sinh |
 | `thue-nguoi-cham-benh-nhan-tai-benh-vien` | Chăm bệnh nhân tại viện |
 
-**Chủ đề gợi ý (chưa có bài):**
+### 9.1. Chủ đề gợi ý (chưa có bài)
 
-| Chủ đề | Ghi chú |
+Danh sách được chọn từ nghiên cứu từ khóa ngày 13/11/2026. Viết theo thứ tự ưu tiên từ trên xuống. Trước khi viết, mở `/cam-nang/` để chắc chủ đề chưa có bài.
+
+**Ưu tiên 1: viết ngay**
+
+| Chủ đề | Từ khóa chính / cách nói khác | `service` | Ghi chú |
+|---|---|---|---|
+| Thuê người giúp việc phải thông báo UBND xã: ai phải báo, thủ tục, mức phạt | **thuê người giúp việc phải thông báo UBND xã** / phải khai báo, bị phạt 3 triệu, Nghị định 283 | `giup-viec-o-lai-nha` | Quy định mới (Nghị định 283/2026/NĐ-CP, hiệu lực 10/9/2026). Các báo đưa tin chưa thống nhất về chi tiết: **phải đọc văn bản gốc** trước khi viết. Nói rõ trường hợp làm theo giờ không thường xuyên có phải báo hay không |
+| Thuê giúp việc Tết: giá, thời điểm đặt người, những điều cần thỏa thuận | **giúp việc Tết <năm>** / giá giúp việc Tết, lương giúp việc Tết, thuê người dọn nhà Tết | `giup-viec-tet` | Bài theo mùa: **đăng trước Tết ít nhất 8 tuần**. Giá lấy đúng từ `/dich-vu/giup-viec-tet/#bang-gia` |
+| Giúp việc theo giờ bao nhiêu tiền 1 tiếng? Cách tính chi phí theo tháng | **giúp việc theo giờ bao nhiêu tiền 1 tiếng** / giá giúp việc theo giờ, dọn nhà theo giờ bao nhiêu tiền | `giup-viec-theo-gio` | Đi sâu vào cách tính (số giờ × số buổi). Dẫn link sang bài bảng giá chung và bài so sánh ở lại hay theo giờ, không lặp lại nội dung hai bài đó |
+| Thuê giúp việc qua đâu: tự tìm, qua app hay qua trung tâm? | **thuê giúp việc không qua trung gian** / app giúp việc, trung tâm giúp việc, giúp việc chính chủ | `giup-viec-o-lai-nha` | So sánh công bằng cả ưu và nhược điểm của từng cách. **Không nêu tên app hay trung tâm nào** (mục 6.1) |
+
+**Ưu tiên 2**
+
+| Chủ đề | Từ khóa chính / cách nói khác | `service` | Ghi chú |
+|---|---|---|---|
+| Người giúp việc có phải đóng bảo hiểm xã hội không? | **đóng bảo hiểm cho người giúp việc** / BHXH người giúp việc, bảo hiểm y tế | `giup-viec-o-lai-nha` | Phải đọc văn bản gốc |
+| Người giúp việc được nghỉ bao nhiêu ngày? | **người giúp việc được nghỉ bao nhiêu ngày** / ngày nghỉ, giờ nghỉ, nghỉ lễ Tết của người giúp việc | `giup-viec-o-lai-nha` | Phải đọc văn bản gốc |
+| Dấu hiệu lừa đảo khi tìm người giúp việc qua mạng | **lừa đảo giúp việc nhà** / tìm người giúp việc qua mạng bị lừa | `giup-viec-o-lai-nha` | |
+| Đi nuôi bệnh cần mang theo những gì? | **đi nuôi bệnh cần mang theo những gì** / đồ dùng khi nằm viện | `cham-nguoi-benh` | Danh sách thực tế cho người nhà và người chăm. Không nói về thuốc hay điều trị (mục 6.4) |
+| Cách giữ người giúp việc làm lâu dài | **giữ chân người giúp việc** / cách đối xử với người giúp việc, quản lý người giúp việc | `giup-viec-o-lai-nha` | Viết công bằng cho cả hai bên (mục 6.6) |
+| Thuê tạp vụ văn phòng: công việc, chi phí, thuê ngoài hay tuyển trực tiếp | **tạp vụ văn phòng là làm gì** / thuê tạp vụ văn phòng | `tap-vu-van-phong` | Viết cho doanh nghiệp. Không khẳng định giá đã gồm VAT hay dụng cụ khi trang dịch vụ chưa ghi |
+| Những tuần đầu khi người giúp việc mới đến nhà | **người giúp việc mới đến nhà** / hướng dẫn người giúp việc mới, giao việc | `giup-viec-o-lai-nha` | |
+| Người giúp việc nghỉ ngang: gia đình nên làm gì | **người giúp việc nghỉ ngang** / người giúp việc bỏ về | `giup-viec-o-lai-nha` | Link tới chính sách đổi người |
+
+**Hỏi người quản lý trước khi viết**
+
+| Chủ đề | Cần hỏi |
 |---|---|
-| Người giúp việc nghỉ ngang: gia đình nên làm gì | Link tới chính sách đổi người |
-| Những tuần đầu khi người giúp việc mới đến nhà | Hướng dẫn, phân việc, quy tắc chung trong nhà |
-| Cách giữ người giúp việc làm lâu dài | Cách đối xử, ngày nghỉ, thưởng |
-| Dấu hiệu lừa đảo khi tìm giúp việc qua mạng | |
-| Bài cho người lao động: lần đầu đi làm giúp việc, quyền lợi | Link tới `/tuyen-dung/` |
-| Thuê người chăm bé theo giờ hành chính hay ở lại | **Hỏi người quản lý trước khi viết**: chưa rõ trung tâm có nhận theo giờ hành chính không |
+| Thuê người trông trẻ theo giờ, ban ngày, ban đêm, giờ hành chính | Trung tâm có nhận các hình thức này không |
+| Chăm sóc mẹ và bé sau sinh tại nhà | Nên viết bài mới hay bổ sung vào bài chăm trẻ sơ sinh đã có |
+| Chi phí thuê người chăm người già theo từng mức độ | Dễ trùng với trang dịch vụ chăm người già |
+| Bài cho người lao động: lần đầu đi làm giúp việc, quyền lợi | Có muốn viết cho người tìm việc không (link tới `/tuyen-dung/`) |
+| Trang theo từng bệnh viện, quận, chung cư | Mặc định **không viết** (mục 6.8) |
+
+### 9.2. Hết chủ đề gợi ý: tự tìm từ khóa
+
+Khi mọi chủ đề ở 9.1 đã có bài (hoặc đang chờ hỏi), tự tìm chủ đề mới theo các bước dưới đây.
+
+**Bước A. Lấy gợi ý tìm kiếm của Google.** Đây là các cụm người dùng thật sự gõ:
+
+```bash
+curl -s -G "https://suggestqueries.google.com/complete/search" \
+  --data-urlencode "client=firefox" --data-urlencode "hl=vi" --data-urlencode "gl=vn" \
+  --data-urlencode "q=<cụm gốc>"
+```
+
+- Cụm gốc: `thuê người giúp việc`, `thuê giúp việc`, `tìm người giúp việc`, `giúp việc theo giờ`, `giúp việc gia đình`, `thuê người chăm`, `người chăm sóc người già`, `chăm người bệnh`, `nuôi bệnh`, `thuê người trông trẻ`, `giúp việc tết`, `tạp vụ văn phòng`, `lương giúp việc`, `hợp đồng giúp việc`.
+- Ghép thêm từ hỏi vào sau cụm gốc để ra câu hỏi cụ thể: `bao nhiêu`, `có nên`, `có phải`, `có được`, `cách`, `kinh nghiệm`, `mẫu`, `lưu ý`, `khi nào`, `ở đâu`, `phải`. Ví dụ `người giúp việc có phải`.
+- Một ý được Google gợi ý ở **nhiều cách nói khác nhau** là dấu hiệu nhiều người tìm. Ưu tiên những ý như vậy.
+
+**Bước B. Tìm tin nóng và chủ đề theo mùa.**
+- Tìm tin mới về: luật, nghị định, mức phạt, lương tối thiểu, bảo hiểm liên quan đến người giúp việc. Ưu tiên báo chính thống, rồi **đọc văn bản gốc**.
+- Lịch mùa vụ, đăng bài trước mùa **ít nhất 6–8 tuần**:
+
+  | Thời điểm | Chủ đề |
+  |---|---|
+  | Trước Tết | Giúp việc Tết, dọn nhà Tết, người giúp việc nghỉ Tết |
+  | Sau Tết | Khó tìm người sau Tết, người giúp việc không quay lại |
+  | Hè (tháng 5–8) | Trông trẻ dịp hè |
+  | Quanh mùa nhập học | Đón đưa, trông trẻ sau giờ học |
+
+**Bước C. Xem đối thủ đang viết gì.** Đọc danh sách bài trong sitemap của các site cùng ngành:
+
+| Site | Sitemap |
+|---|---|
+| giupviechongdoan.com | `https://giupviechongdoan.com/post-sitemap.xml` |
+| giupvieccotam.com | `https://giupvieccotam.com/post-sitemap.xml` |
+| giupviec88.com | `https://giupviec88.com/sitemap.xml` |
+| giupviec88.vn | `https://giupviec88.vn/sitemap.xml` |
+
+- Đọc tên các bài (đường dẫn) để tìm **chủ đề họ có mà An Gia chưa có**. Có thể tìm thêm site khác bằng cách tra Google các từ khóa chính.
+- **Chỉ lấy ý tưởng chủ đề.** Không chép, không viết lại câu chữ của họ (mục 6.9).
+- **Không nêu tên, không dẫn link** tới các site này trong bài (mục 6.1).
+- **Không bắt chước** ba kiểu bài của đối thủ:
+  - bài lạc đề (món ăn, du học, xuất khẩu lao động…);
+  - trang theo quận, chung cư, bệnh viện;
+  - hàng loạt bài na ná nhau nhồi cụm "giúp việc Hà Nội".
+
+**Bước D. Lọc chủ đề.** Chỉ viết khi đạt **tất cả** các điều kiện sau:
+
+- [ ] Người tìm cụm này là người đang hoặc sắp thuê người, hoặc đang cần đúng một dịch vụ An Gia có.
+- [ ] Gắn được với một trong 7 dịch vụ ở mục 3 (trường `service`).
+- [ ] Chưa có bài trên `/cam-nang/`. Nếu đã có bài gần giống, **không viết bài mới** mà báo người quản lý để bổ sung bài cũ.
+- [ ] Không phải trang theo địa điểm (mục 6.8).
+- [ ] Không cần đến cam kết hay số liệu chưa có trên web (mục 6.1, 6.3).
+- [ ] Từ khóa không nhập nhằng. Ví dụ "osin" bị Google hiểu thành thuật ngữ an ninh mạng OSINT, "người giúp việc" đứng một mình bị hiểu thành tên phim.
+
+Chủ đề không đạt hết các điều kiện trên, hoặc còn điều chưa chắc, thì hỏi người quản lý trước khi viết.
+
+**Bước E. Xếp thứ tự ưu tiên:**
+1. Tin nóng hoặc chủ đề theo mùa đang đến gần.
+2. Người tìm đang sắp thuê: hỏi giá, hỏi cách thuê, hỏi thủ tục.
+3. Người tìm đang tìm hiểu chung: kinh nghiệm, lưu ý.
+
+Ghi nguồn của chủ đề vào báo cáo ở Bước 8.
 
 ---
 
@@ -404,6 +491,7 @@ Ghi ra từ khóa chính của bài và 3–5 cách nói khác, rồi kiểm tra
 ```
 Bài: <title>
 Link: https://giupviecangia.com/cam-nang/<slug>/   (hoặc: chưa đăng, lỗi …)
+Nguồn chủ đề: mục 9.1 / tự tìm (gợi ý Google: "…"; tin: <link>; đối thủ: <đường dẫn bài>)
 Kiểm tra: title X ký tự, description Y ký tự, Z từ, N link (đã kiểm tra hết)
 Từ khóa chính: "…" xuất hiện K lần (tối đa cho phép: Z / 150); cách nói khác: …
 Có ghi giá: có / không
