@@ -34,7 +34,7 @@ export const site = {
   foundingYear: 2018, // TODO
 
   analytics: {
-    gtmId: '', // TODO: GTM-XXXXXXX — để trống thì không nạp GTM
+    gtmId: 'GTM-5ZKBK8ZB', // để trống thì không nạp GTM
   },
 };
 
